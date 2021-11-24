@@ -1,0 +1,11 @@
+.About__title {
+    font-size: 50px;
+    text-align: center;
+    margin: 50px 50px;
+}
+
+.About__info {
+    padding-top: 30px;
+    padding-bottom: 50px;
+    font-size: 16px;
+}
