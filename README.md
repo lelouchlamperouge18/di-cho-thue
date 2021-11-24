@@ -43,7 +43,8 @@ npm run dev
 5. ...
 
 ## Flow
-* Làm việc chung trên branch `main`, không thay đổi, chỉnh sửa code của người khác.
+* Branch `main`: branch chính, không đụng vào
+* Mỗi khi code tạo branch mới từ nhánh `main`: dùng lệnh `git checkout -b <ten-branch>`. Sau khi code xong thì commit push origin lên nhánh đó.
 * Hard coding
 * Tạo các components (không sử dụng ở nhiều page): định nghĩa trong /components (gồm 2 files `.js` và `.module.css`)
 * Tạo các components (tái sử dụng, giá trị ở page này dùng ở nhiều page khác): định nghĩa trong /features (gồm 3 files)
