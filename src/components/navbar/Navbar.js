@@ -25,6 +25,9 @@ export default function Navbar({ toggle }) {
                         <li>
                             <Link href="/contact" onClick={toggle}><a className={styles.navLink}>Contact</a></Link>
                         </li>
+                        <li>
+                            <Link href="/sign-in" onClick={toggle}><a className={styles.navLink}>Sign In</a></Link>
+                        </li>
                         {!session && (
                             <li>
                             <Link
@@ -34,7 +37,7 @@ export default function Navbar({ toggle }) {
                                     signIn();
                                 }}
                             >
-                                <a className={styles.navLink}> Log In </a>
+                                <a className={styles.navLink}> Log In Google </a>
                             </Link>
                             </li>
                         )}
