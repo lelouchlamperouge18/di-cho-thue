@@ -44,7 +44,7 @@ npm run dev
 
 ## Flow
 * Branch `main`: branch chính, không đụng vào
-* Mỗi khi code tạo branch mới từ nhánh `main`: dùng lệnh `git checkout -b <ten-branch>`. Sau khi code xong thì commit push origin lên nhánh đó.
+* Mỗi khi code tạo branch mới từ nhánh `main`: dùng lệnh `git checkout -b <ten-branch>`. Sau khi code xong thì commit + push origin lên nhánh đó.
 * Hard coding
 * Tạo các components (không sử dụng ở nhiều page): định nghĩa trong /components (gồm 2 files `.js` và `.module.css`)
 * Tạo các components (tái sử dụng, giá trị ở page này dùng ở nhiều page khác): định nghĩa trong /features (gồm 3 files)
@@ -55,4 +55,5 @@ npm run dev
 2. getStaticProps: https://nextjs.org/docs/basic-features/data-fetching#getstaticprops-static-generation
 3. getServerSideProps: https://nextjs.org/docs/basic-features/data-fetching#getserversideprops-server-side-rendering
 4. Dynamic Routes: https://nextjs.org/docs/routing/dynamic-routes
+5. API routes: https://nextjs.org/docs/api-routes/introduction
 ❤️
