@@ -31,9 +31,11 @@ export default function KiemTraThongTin() {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
+                    <Link href="/list/shipper">
                     <Button size="small" color="primary">
                         XEM NGAY ➜
                     </Button>
+                    </Link>
                 </CardActions>
             </Card>
             <Card className={styles.root}>
@@ -53,9 +55,11 @@ export default function KiemTraThongTin() {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
+                    <Link href="/list/store">
                     <Button size="small" color="primary">
                         XEM NGAY ➜
                     </Button>
+                    </Link>
                 </CardActions>
             </Card>
         </div>
