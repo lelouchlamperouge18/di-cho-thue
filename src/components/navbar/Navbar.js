@@ -28,35 +28,6 @@ export default function Navbar({ toggle }) {
                         <li>
                             <Link href="/sign-in" onClick={toggle}><a className={styles.navLink}>Sign In</a></Link>
                         </li>
-                        {!session && (
-                            <li>
-                            <Link
-                                href="/api/auth/signin"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    signIn();
-                                }}
-                            >
-                                <a className={styles.navLink}> Log In Google </a>
-                            </Link>
-                            </li>
-                        )}
-                        {session && (
-                            <>
-                            <span className="email" style={{"color": "white"}}>{session.user.email}</span>
-                            <li>
-                            <Link
-                                href="/api/auth/signout"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    signOut();
-                                }}
-                            >
-                                <a className={styles.navLink}> Sign Out </a>
-                            </Link>
-                            </li>
-                            </>
-                        )}
                     </ul>
                 </div>
             </div>

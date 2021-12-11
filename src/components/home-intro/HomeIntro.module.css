@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
 .homeIntro {
-    margin: 100px 0px;
+    margin: 80px 0px;
     /* border: rgb(209, 209, 209) 3px solid; */
 }
 
 .bigHeading {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lora', serif;
     font-size: 48px !important;
     font-weight: 700;
     color: #3c3c3c;

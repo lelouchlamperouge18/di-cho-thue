@@ -1,0 +1,15 @@
+.KiemTraThongTin {
+    color: black;
+    padding: 20px 70px;
+    text-align: left;
+    display: flex;
+    justify-content: space-around;
+}
+
+.root {
+    width: 300px;
+}
+
+.media {
+    height: 140px;
+}
