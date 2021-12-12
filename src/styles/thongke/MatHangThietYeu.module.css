@@ -1,0 +1,12 @@
+.table {
+    min-width: 650px;
+}
+
+.title {
+    text-align: center;
+    padding: 35px 35px;
+    font-size: 40px;
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-international-vegetarian-day-simple-and-fresh-banner-image_197020.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
