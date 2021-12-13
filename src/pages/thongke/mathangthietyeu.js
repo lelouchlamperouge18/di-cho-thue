@@ -68,7 +68,6 @@ export default function MatHangThietYeu(props) {
             <h1 class={styles.title}>
                 THỐNG KÊ MẶT HÀNG THIẾT YẾU
             </h1>
-
             <FormControl sx={{ m: 1, minWidth: 120 }}>
                 <Select id="maloaisp-dropdown" value={maloaisp} onChange={(event)=>changeMaLoaiSP(event.target.value)}>
                     <MenuItem value="0">
