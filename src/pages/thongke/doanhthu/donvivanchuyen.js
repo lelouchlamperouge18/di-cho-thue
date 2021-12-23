@@ -1,7 +1,7 @@
-import styles from '../../styles/thongke/NhuCauThucPhamCungKy.module.css'
+import styles from '../../../styles/thongke/DoanhThu.module.css'
 import Head from 'next/head'
-import Navbar from '../../components/navbar/Navbar'
-import Sidebar from '../../components/sidebar/Sidebar'
+import Navbar from '../../../components/navbar/Navbar'
+import Sidebar from '../../../components/sidebar/Sidebar'
 import React, {useState, useEffect} from 'react'
 
 import Table from '@material-ui/core/Table';
@@ -17,52 +17,32 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
 import FormLabel from '@material-ui/core/FormLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import TextField from '@material-ui/core/TextField';
-import TablePagination from '@material-ui/core/TablePagination';
-import { Container } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { Container } from '@material-ui/core'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import Typography from '@material-ui/core/Typography';
+import {
+    ComposedChart,
+    Line,
+    Area,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    LineChart, 
+    AreaChart,
+  } from 'recharts';
 
 
-export default function NhuCauThucPhamCungKy(props) {
+export default function DoanhThuDVVC(props) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggle = () => { setIsOpen(!isOpen) }
-
-    const [combobox_SanPham, setcombobox_SanPham] = useState([]);
-    const [combobox_NhaCungCap, setcombobox_NhaCungCap] = useState([]);
-    const [combobox_Year, setcombobox_Year] = useState([]);
-    const [data_chartMain , setdata_chartMain] = useState([]);
-
-    useEffect(() =>
-    {
-        fetch('https://localhost:44357/api/SanPham/0')
-        .then(response => response.json())
-        .then(result => setcombobox_SanPham(result))
-        .catch(error => console.log(error));
-
-        fetch('https://localhost:44357/api/NhaCungCap')
-        .then(response => response.json())
-        .then(result => setcombobox_NhaCungCap(result))
-        .catch(error => console.log(error));
-
-        fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/Year')
-        .then(response => response.json())
-        .then(result => setcombobox_Year(result))
-        .catch(error => console.log(error));
-
-        fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/PresentYear')
-        .then(response => response.json())
-        .then(result => setdata_chartMain(result))
-        .catch(error => console.log(error));
-    }, [])
-
-    const [masp, setMasp] = useState(0);
-    const [mancc, setMancc] = useState(0);
 
     const [year, setYear] = useState(0);
     const changeYear = (newYear) => { setYear(newYear) }
@@ -73,55 +53,56 @@ export default function NhuCauThucPhamCungKy(props) {
     const [month, setMonth] = useState(0);
     const changeMonth = (newMonth) => { setMonth(newMonth) }
 
-    const [search, setSearch] = useState("");
+    const [combobox_Year, setcombobox_Year] = useState([]);
+    const [data_chart, setdata_chart] = useState([]);
+    useEffect(() =>
+    {
+        fetch('https://localhost:44357/api/ThuNhapDVVC_Year')
+        .then(response => response.json())
+        .then(result => setcombobox_Year(result))
+        .catch(error => console.log(error));
 
-    const changeMaSP = (newMasp) => { setMasp(newMasp) }
-    const changeMaNCC = (newMancc) => { setMancc(newMancc) }
+        fetch('https://localhost:44357/api/ThuNhapDVVC/ALL/1')
+        .then(response => response.json())
+        .then(result => setdata_chart(result))
+        .catch(error => console.log(error));
+    }, [])
 
-    const [tieuchi, setTieuChi] = useState("All");
+
+
+    const [tieuchi, setTieuChi] = useState("AllYear");
     const changeTieuChi = (newTieuChi) => { setTieuChi(newTieuChi) }
 
     const [statisticTable, setStatisticTable] = useState([]);
     function ShowData ()
     {
-        if (tieuchi === "All")
+        if (tieuchi === "AllYear")
         {
-            fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/All')
-            .then(res => res.json())
-            .then(res => setStatisticTable(res));
-        }
-        else if (tieuchi === "AllYear")
-        {
-            fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/All/' + 
-                   masp + '/' + mancc)
+            fetch('https://localhost:44357/api/ThuNhapDVVC/1')
             .then(res => res.json())
             .then(res => setStatisticTable(res));
         }
         else if (tieuchi === "ChooseYearAllQuarter")
         {
-            fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/' + 
-                    masp + '/' + mancc + '/ChooseYearAllQuarter/' + year)
+            fetch('https://localhost:44357/api/ThuNhapDVVC/1/ChooseYearAllQuarter/' + year)
             .then(res => res.json())
             .then(res => setStatisticTable(res));
         }
         else if (tieuchi === "ChooseYearAllMonth")
         {
-            fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/' + 
-                    masp + '/' + mancc + '/ChooseYearAllMonth/' + year)
+            fetch('https://localhost:44357/api/ThuNhapDVVC/1/ChooseYearAllMonth/' + year)
             .then(res => res.json())
             .then(res => setStatisticTable(res));
         }
         else if (tieuchi === "ChooseQuarterAllYear")
         {
-            fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/' + 
-                    masp + '/' + mancc + '/ChooseQuarterAllYear/' + quarter)
+            fetch('https://localhost:44357/api/ThuNhapDVVC/1/ChooseQuarterAllYear/' + quarter)
             .then(res => res.json())
             .then(res => setStatisticTable(res));
         }
         else if (tieuchi === "ChooseMonthAllYear")
         {
-            fetch('https://localhost:44357/api/NhuCauThucPhamCungKy/' + 
-                    masp + '/' + mancc + '/ChooseMonthAllYear/' + month)
+            fetch('https://localhost:44357/api/ThuNhapDVVC/1/ChooseMonthAllYear/' + month)
             .then(res => res.json())
             .then(res => setStatisticTable(res));
         }
@@ -135,7 +116,7 @@ export default function NhuCauThucPhamCungKy(props) {
     const [order, setOrder] = useState("ASC")
     const sorting = (col) =>
     {
-        if (col === "SLBanRa" || col === "Gia")
+        if (col === "TongDoanhThu")
         {
             if (order === "ASC")
             {
@@ -173,47 +154,14 @@ export default function NhuCauThucPhamCungKy(props) {
                 setOrder("ASC");
             }
         }
-        
     }
-
-    // page
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerpage] = useState(10);
-    const handleChangePage = (event, newPage) =>
-    {
-        setPage(newPage)
-    }
-
-    const handleChangeRowsPerPage = event =>
-    {
-        setRowsPerpage(parseInt(event.target.value, 10));
-        setPage(0);
-    }
-
-    const emptyRows = 
-    rowsPerPage - Math.min(rowsPerPage, statisticTable.length - page * rowsPerPage);
-    
-
-    // Pie chart
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
-
-    const RADIAN = Math.PI / 180;
-    const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+ 
+    const [search, setSearch] = useState("");
 
     return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-        {`${(percent * 100).toFixed(0)}%`}
-        </text>
-    );
-    };
-
-    return (
-        <div className="NhuCauThucPhamCungKy">
+        <div className="DoanhThuDVVC">
             <Head>
-                <title>Thống kê nhu cầu thực phẩm cùng kỳ</title>
+                <title>Thống kê doanh thu</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Sidebar isOpen={isOpen} toggle={toggle}/>
@@ -221,76 +169,41 @@ export default function NhuCauThucPhamCungKy(props) {
             
             <Container>
             <h1 class={styles.title}>
-                THỐNG KÊ <br/> NHU CẦU THỰC PHẨM CÙNG KỲ
+                THỐNG KÊ DOANH THU <br/> CHO ĐƠN VỊ VẬN CHUYỂN
             </h1>
-            
-            <FormControl sx={{ m: 1, minWidth: 120 }} >
-                <Select id="masp-dropdown" className={styles.select} value={masp} onChange={(event)=>changeMaSP(event.target.value)}>
-                    <MenuItem value="0">
-                        <em>All</em>
-                    </MenuItem>
-                    {combobox_SanPham.map((row) => 
-                    (
-                        <MenuItem value={row.TenSP}>{row.TenSP}</MenuItem>
-                    ))}
-                </Select>
-                <FormHelperText>Chọn sản phẩm</FormHelperText>
-            </FormControl>
-            &emsp;&emsp;
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <Select id="mancc-dropdown" className={styles.select} value={mancc} onChange={(event)=>changeMaNCC(event.target.value)}>
-                    <MenuItem value="0">
-                        <em>All</em>
-                    </MenuItem>
-                    {combobox_NhaCungCap.map((row) => 
-                    (
-                        <MenuItem value={row.TenNCC}>{row.TenNCC}</MenuItem>
-                     ))}
-                </Select>
-                <FormHelperText>Chọn nhà cung cấp</FormHelperText>
-            </FormControl>
-            &emsp;&emsp;&emsp;&emsp;&emsp;
-            <Button variant="contained" onClick={ShowData}>
-                Xem thống kê
-            </Button>
-            <br/><br/>
             <FormControl component="fieldset">
                 <FormLabel component="legend">Các tiêu chí thống kê:</FormLabel>
-                <RadioGroup name="radio-buttons-group" defaultValue="All">
-                    <FormControlLabel value="All" 
+                <RadioGroup name="radio-buttons-group" defaultValue="AllYear">
+                    <FormControlLabel value="AllYear" 
                                     onChange={(event)=> changeTieuChi(event.target.value)} 
                                     control={<Radio />} 
-                                    label="Xem tất cả dữ liệu" />
-                    <FormControlLabel value="AllYear" 
-                                    control={<Radio />} 
-                                    onChange={(event)=> changeTieuChi(event.target.value)}
-                                    label="Tất cả các năm"/>
+                                    label="Doanh thu tất cả các năm"/>
                     <FormControlLabel value="ChooseYearAllQuarter" 
+                                    onChange={(event)=> changeTieuChi(event.target.value)} 
                                     control={<Radio />} 
-                                    onChange={(event)=> changeTieuChi(event.target.value)}
-                                    label="Tất cả các quý trong năm"/>
+                                    label="Doanh thu tất cả các quý trong năm"/>
                     <FormControlLabel value="ChooseYearAllMonth" 
+                                    onChange={(event)=> changeTieuChi(event.target.value)} 
                                     control={<Radio />} 
-                                    onChange={(event)=> changeTieuChi(event.target.value)}
-                                    label="Tất cả các tháng trong năm"/>
+                                    label="Doanh thu tất cả các tháng trong năm"/>
                     <FormControl sx={{ m: 1, minWidth: 120 }}>
                         <Select id="year-dropdown" value={year} 
-                                onChange={(event)=>changeYear(event.target.value)}>
+                                    onChange={(event)=>changeYear(event.target.value)}>
                         {combobox_Year.map((row) => 
                         (
                             <MenuItem value={row.Nam}>{row.Nam}</MenuItem>
                         ))}
-                        </Select>
+                        </Select>   
                         <FormHelperText>Chọn năm</FormHelperText>
                     </FormControl>
                     <FormControlLabel value="ChooseQuarterAllYear" 
+                                    onChange={(event)=> changeTieuChi(event.target.value)} 
                                     control={<Radio />} 
-                                    onChange={(event)=> changeTieuChi(event.target.value)}
-                                    label="Tất cả các năm theo quý"/>
+                                    label="Doanh thu tất cả các năm theo quý"/>
                     <FormControl sx={{ m: 1, minWidth: 120 }}>
-                        <Select id="year-dropdown"
-                                onChange={(event)=>changeQuarter(event.target.value)}>
-                            <MenuItem value="1">Qúy 1 (tháng 1 đến tháng 3)</MenuItem>
+                        <Select id="quarter-dropdown" 
+                                    onChange={(event)=>changeQuarter(event.target.value)}>
+                            <MenuItem value="1" >Qúy 1 (tháng 1 đến tháng 3)</MenuItem>
                             <MenuItem value="2">Qúy 2 (tháng 4 đến tháng 6)</MenuItem>
                             <MenuItem value="3">Qúy 3 (tháng 7 đến tháng 9)</MenuItem>
                             <MenuItem value="4">Qúy 4 (tháng 10 đến tháng 12)</MenuItem>
@@ -298,13 +211,12 @@ export default function NhuCauThucPhamCungKy(props) {
                         <FormHelperText>Chọn quý</FormHelperText>
                     </FormControl>
                     <FormControlLabel value="ChooseMonthAllYear" 
-                                    control={<Radio />} 
-                                    onChange={(event)=> changeTieuChi(event.target.value)}
-                                    label="Tất cả các năm theo tháng"/>
+                                onChange={(event)=> changeTieuChi(event.target.value)} 
+                                control={<Radio />} label="Doanh thu tất cả các năm theo tháng"/>
                     <FormControl sx={{ m: 1, minWidth: 120 }}>
-                        <Select id="year-dropdown"
-                                 onChange={(event) => changeMonth(event.target.value)}>
-                            <MenuItem value="1">Tháng 1</MenuItem>
+                        <Select id="year-dropdown" 
+                                onChange={(event) => changeMonth(event.target.value)}>
+                            <MenuItem value="1" >Tháng 1</MenuItem>
                             <MenuItem value="2">Tháng 2</MenuItem>
                             <MenuItem value="3">Tháng 3</MenuItem>
                             <MenuItem value="4">Tháng 4</MenuItem>
@@ -321,60 +233,67 @@ export default function NhuCauThucPhamCungKy(props) {
                     </FormControl>
                 </RadioGroup>
             </FormControl>
+            &emsp;&emsp;
+            <Button variant="contained" className={styles.select}
+                    onClick={ShowData}>
+                Xem thống kê 
+            </Button>
             <div className={styles.nameChartMain}>
-                Số lượng các mặt hàng bán ra trong năm nay
+                Doanh thu các tháng trong năm vừa qua
             </div>
             {
-                data_chartMain && data_chartMain.length > 0 ?
-                <BarChart
-                    width={500}
-                    height={400}
-                    data={data_chartMain}
-                    margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                    }}
+                data_chart && data_chart.length > 0 ?
+                <ComposedChart
                     className={styles.chartMain}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="TenSP" />
+                    width={600} 
+                    height={400}
+                    data={data_chart}
+                    margin={{
+                        top: 20,
+                        right: 20,
+                        bottom: 20,
+                        left: 20,
+                    }}
+                    >
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <XAxis dataKey="Thang" scale="band" />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Bar dataKey="SLBanRa" fill="#82ca9d" />
-                </BarChart>
+                    <Bar dataKey="TongDoanhThu" barSize={30} fill="#000099" />
+                    <Line type="monotone" dataKey="TongDoanhThu" stroke="#ff7300" />
+                </ComposedChart>
                 : <></>
             }
-            <br/>
+            
+            
+            <br/><br/>
+
+            
             <Typography className={styles.text} variant="h7">
                 {
                     'All Rows: ' + statisticTable.length
                 }
-            </Typography> 
-            <br/><br/><br/><br/>
-            <hr/>
+            </Typography>
+            <br/><br/><br/><br/><br/><hr/>
             <h5 className={styles.titleStatistic}>
                 {
-                    tieuchi === "All" ? 
-                        'Tất cả dữ liệu nhu cầu thực phẩm' :
                     tieuchi === "AllYear" ? 
-                        'Nhu cầu thực phẩm tất cả các năm' : 
+                        'Thống kê doanh thu tất cả các năm' : 
                     tieuchi === "ChooseYearAllQuarter" ? 
-                        'Nhu cầu thực phẩm thu tất cả các quý trong năm ' + year :
+                        'Thống kê doanh thu tất cả các quý trong năm ' + year :
                     tieuchi === "ChooseYearAllMonth" ?
-                        'Nhu cầu thực phẩm tất cả các tháng trong năm ' + year :
+                        'Thống kê doanh thu tất cả các tháng trong năm ' + year :
                     tieuchi === "ChooseQuarterAllYear" ?
-                        'Nhu cầu thực phẩm tất cả các năm theo quý ' + quarter :
+                        'Thống kê doanh thu tất cả các năm theo quý ' + quarter :
                     tieuchi === "ChooseMonthAllYear" ?
-                        'Nhu cầu thực phẩm tất cả các năm theo tháng ' + month : ''
+                        'Thống kê doanh thu tất cả các năm theo tháng ' + month : ''
                 }
             </h5>
             <TextField
                 className={styles.search}
                 id="standard-textarea"
-                label="Search..."
+                label="   Search..."
                 placeholder="Enter keys..."
                 multiline
                 variant="standard"
@@ -382,7 +301,7 @@ export default function NhuCauThucPhamCungKy(props) {
                     setSearch(e.target.value);
                 }}
             />
-            <br/><br/>
+            <br/>
             <ReactHTMLTableToExcel
                     className={styles.export}
                     id="test-table-xls-button"
@@ -391,11 +310,14 @@ export default function NhuCauThucPhamCungKy(props) {
                     sheet="tablexls"
                     buttonText="Export as XLS"/>
             <br/><br/>
-            <div>
+            
+            
+
+            <div className={styles.tableStyle}>
             { 
             statisticTable.length > 0 ? 
             <TableContainer component={Paper} >
-                <Table className={styles.table} aria-label="simple table"id="table-to-xls">
+                <Table className={styles.table} aria-label="simple table" id="table-to-xls">
                     <TableHead>
                         <TableRow>
                         {
@@ -416,7 +338,6 @@ export default function NhuCauThucPhamCungKy(props) {
                                 else if (Object.values(val).toString().includes(search))
                                     return val;
                             })
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((item, index) => {
                                 const rowCells = [];
                                 Object.values(item).forEach((val, index) => {
@@ -427,21 +348,49 @@ export default function NhuCauThucPhamCungKy(props) {
                         }
                     </TableBody>
                 </Table>
-                <TablePagination
-                    component="div"
-                    count={statisticTable.length}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    rowsPerPageOptions={[5, 10, 25, statisticTable.length]}
-                    rowsPerPage={rowsPerPage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
             </TableContainer> 
             : <></>
             }
             </div>
-            <br/><br/> 
+            <br/> 
+            {
+            statisticTable && statisticTable.length > 0 ?
+            <ComposedChart
+                className={styles.chartDetail}
+                width={700}
+                height={400}
+                data={statisticTable}
+                syncId="anyId"
+                margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                {
+                    tieuchi === "AllYear" ?
+                        <XAxis dataKey="Nam" /> : 
+                    tieuchi === "ChooseYearAllQuarter" ?
+                        <XAxis dataKey="Quy" /> :
+                    tieuchi === "ChooseYearAllMonth" ?
+                        <XAxis dataKey="Thang" /> :
+                    tieuchi === "ChooseQuarterAllYear" || 
+                    tieuchi === "ChooseMonthAllYear" ?
+                        <XAxis dataKey="Nam" /> : <></>
+                }
+                
+                <YAxis />
+                <Tooltip />
+                <Line type="monotone" dataKey="TongDoanhThu" stroke="#82ca9d" fill="#82ca9d" />
+                <Bar dataKey="TongDoanhThu" barSize={20} fill="	#00CC99" />
+            </ComposedChart>
+            : <></>
+            }
+            <br/>  
             </Container>
+
         </div>
     )
 }

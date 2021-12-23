@@ -10,3 +10,76 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.search{
+    background-color: white;
+    margin-left: 200px;
+    width: 40%;
+    left: 360px;
+    border-radius: 0.5rem;
+}
+
+.select{
+    width: 200px;
+    left:90px;
+    height: 40px;
+}
+
+
+
+.combobox{
+    width: 200px;
+}
+
+
+.tableStyle{
+    text-align: center;
+}
+
+.titleStatistic{
+    color: brown;
+    font-size: 20px;
+    text-align: center;
+}
+
+.text{
+    font-weight: bold;
+    color : maroon;
+    font-style: italic;
+}
+
+
+.export{
+    width: 200px;
+    height: 40px;
+    font-size: 17px;
+    background-color:silver;
+    color:black;
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+.export:hover{
+    background-color:darkgrey;
+}
+
+.chartMain{
+    position: absolute;
+    float: right;
+    right: 100px;
+    top: 100px;
+}
+
+.nameChartMain{
+    position: absolute;
+    right: 370px;
+    top: 370px;
+    font-size: large;
+    color: brown;
+    font-weight: bold;
+}
+
+.chartDetail{
+    position: relative;
+    margin: 0 auto;
+}

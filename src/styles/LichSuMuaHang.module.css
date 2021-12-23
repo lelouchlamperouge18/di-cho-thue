@@ -11,34 +11,7 @@
     background-size: cover;
 }
 
-.groupcard
-{
-    color: black;
-    text-align: left;
-    display: flex;
-    text-align: left;
-    display: flex;
-}
-
-.pic
-{
-    width: 80px;
-    height: 80px;
-}
-
-.root {
-    width:100%;
-    margin: 0 20px 0 0;
- 
-}
-
-.media {
-    height: 140px;
-}
-
 .search{
+    width: 30%;
     background-color: white;
-    margin-left: 200px;
-    width: 40%;
-    float: right;
 }

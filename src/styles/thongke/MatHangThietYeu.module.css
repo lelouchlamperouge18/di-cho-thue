@@ -10,3 +10,31 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.search{
+    background-color: white;
+    margin-left: 200px;
+    width: 40%;
+    float: right;
+}
+
+.select{
+    width: 200px;
+}
+
+
+.text{
+    font-weight: bold;
+    color : maroon;
+    font-style: italic;
+}
+
+
+.export{
+    width: 200px;
+    height: 40px;
+    font-size: 17px;
+    background-color:darkgray;
+    color: black;
+    font-weight: bold;
+}
