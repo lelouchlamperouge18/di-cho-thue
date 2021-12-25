@@ -15,7 +15,7 @@
     background-color: white;
     margin-left: 200px;
     width: 40%;
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     left: 400px;
 }
 
@@ -60,15 +60,22 @@
 
 .chartMain{ 
     float: right;
-    top: 70px;
-    right: 200px;
+    right: 350px;
 }
 
 .nameChartMain{
-    position: absolute;
-    right: 370px;
-    top: 370px;
+    text-align: center;
     font-size: large;
     color: brown;
     font-weight: bold;
+}
+
+.chartDetail{
+    margin: 0 auto;
+}
+
+
+.Button{
+    width: 250px;
+    height: 40px;
 }

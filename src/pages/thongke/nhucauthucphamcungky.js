@@ -25,7 +25,12 @@ import TablePagination from '@material-ui/core/TablePagination';
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import 
+{ 
+    BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+    LineChart, Line, ComposedChart
+} from 'recharts';
+import { FaHtml5 } from 'react-icons/fa'
 
 
 export default function NhuCauThucPhamCungKy(props) {
@@ -61,6 +66,8 @@ export default function NhuCauThucPhamCungKy(props) {
         .catch(error => console.log(error));
     }, [])
 
+    const [tensp, setTensp] = useState("All");
+    const [tenncc, setTenncc] = useState("All");
     const [masp, setMasp] = useState(0);
     const [mancc, setMancc] = useState(0);
 
@@ -75,6 +82,8 @@ export default function NhuCauThucPhamCungKy(props) {
 
     const [search, setSearch] = useState("");
 
+    const changeTenSP = (newTensp) => { setTensp(newTensp) }
+    const changeTenNCC = (newTenncc) => { setTenncc(newTenncc) }
     const changeMaSP = (newMasp) => { setMasp(newMasp) }
     const changeMaNCC = (newMancc) => { setMancc(newMancc) }
 
@@ -224,36 +233,34 @@ export default function NhuCauThucPhamCungKy(props) {
                 THỐNG KÊ <br/> NHU CẦU THỰC PHẨM CÙNG KỲ
             </h1>
             
-            <FormControl sx={{ m: 1, minWidth: 120 }} >
-                <Select id="masp-dropdown" className={styles.select} value={masp} onChange={(event)=>changeMaSP(event.target.value)}>
-                    <MenuItem value="0">
-                        <em>All</em>
-                    </MenuItem>
-                    {combobox_SanPham.map((row) => 
-                    (
-                        <MenuItem value={row.TenSP}>{row.TenSP}</MenuItem>
-                    ))}
-                </Select>
-                <FormHelperText>Chọn sản phẩm</FormHelperText>
-            </FormControl>
-            &emsp;&emsp;
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-                <Select id="mancc-dropdown" className={styles.select} value={mancc} onChange={(event)=>changeMaNCC(event.target.value)}>
-                    <MenuItem value="0">
-                        <em>All</em>
-                    </MenuItem>
-                    {combobox_NhaCungCap.map((row) => 
-                    (
-                        <MenuItem value={row.TenNCC}>{row.TenNCC}</MenuItem>
-                     ))}
-                </Select>
-                <FormHelperText>Chọn nhà cung cấp</FormHelperText>
-            </FormControl>
-            &emsp;&emsp;&emsp;&emsp;&emsp;
-            <Button variant="contained" onClick={ShowData}>
-                Xem thống kê
-            </Button>
-            <br/><br/>
+            <h5 className={styles.nameChartMain}>
+                Số lượng các mặt hàng bán ra trong năm nay
+            </h5>
+
+            {
+                data_chartMain && data_chartMain.length > 0 ?
+                <BarChart
+                    width={500}
+                    height={400}
+                    data={data_chartMain}
+                    margin={{
+                    top: 5,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                    }}
+                    className={styles.chartMain}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="TenSP" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="SLBanRa" barSize={30} fill="#FFCC00" />
+                </BarChart>
+                : <></>
+            }
+
             <FormControl component="fieldset">
                 <FormLabel component="legend">Các tiêu chí thống kê:</FormLabel>
                 <RadioGroup name="radio-buttons-group" defaultValue="All">
@@ -321,39 +328,55 @@ export default function NhuCauThucPhamCungKy(props) {
                     </FormControl>
                 </RadioGroup>
             </FormControl>
-            <div className={styles.nameChartMain}>
-                Số lượng các mặt hàng bán ra trong năm nay
-            </div>
-            {
-                data_chartMain && data_chartMain.length > 0 ?
-                <BarChart
-                    width={500}
-                    height={400}
-                    data={data_chartMain}
-                    margin={{
-                    top: 5,
-                    right: 30,
-                    left: 20,
-                    bottom: 5,
-                    }}
-                    className={styles.chartMain}
-                >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="TenSP" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="SLBanRa" fill="#82ca9d" />
-                </BarChart>
-                : <></>
-            }
-            <br/>
+            
+           
+            <br/><br/><br/><br/>
+
+
+            <FormControl sx={{ m: 1, minWidth: 120 }} >
+                <Select id="tensp-dropdown" className={styles.select}
+                        value={masp}
+                        onChange={
+                            (event)=>changeTenSP(event.target.text),
+                            (event)=>changeMaSP(event.target.value)}>
+                    <MenuItem value="0" selected>
+                        <em>All</em>
+                    </MenuItem>
+                    {combobox_SanPham.map((row) => 
+                    (
+                        <MenuItem value={row.MaSP}>{row.TenSP}</MenuItem>
+                    ))}
+                </Select>
+                <FormHelperText>Chọn sản phẩm</FormHelperText>
+            </FormControl>
+            &emsp;&emsp;
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+                <Select id="tenncc-dropdown" className={styles.select}
+                        value={mancc}
+                        onChange={
+                            (event)=>changeTenNCC(event.target.text),
+                            (event)=>changeMaNCC(event.target.value)}>
+                    <MenuItem value="0" selected>
+                        <em>All</em>
+                    </MenuItem>
+                    {combobox_NhaCungCap.map((row) => 
+                    (
+                        <MenuItem value={row.MaNCC}>{row.TenNCC}</MenuItem>
+                     ))}
+                </Select>
+                <FormHelperText>Chọn nhà cung cấp</FormHelperText>
+            </FormControl>
+            &emsp;&emsp;&emsp;
+            <Button variant="contained" onClick={ShowData} className={styles.Button}>
+                Xem thống kê
+            </Button>
+            <br/><br/>
             <Typography className={styles.text} variant="h7">
                 {
                     'All Rows: ' + statisticTable.length
                 }
             </Typography> 
-            <br/><br/><br/><br/>
+            <br/>
             <hr/>
             <h5 className={styles.titleStatistic}>
                 {
@@ -371,6 +394,101 @@ export default function NhuCauThucPhamCungKy(props) {
                         'Nhu cầu thực phẩm tất cả các năm theo tháng ' + month : ''
                 }
             </h5>
+            <br/>
+            <Container>
+            {
+                statisticTable && statisticTable.length > 0 ?
+                masp != 0 && mancc != 0 ?
+                tieuchi === "AllYear" ?
+                <ComposedChart
+                    className={styles.chartDetail}
+                    width={700}
+                    height={500}
+                    data={statisticTable}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="Nam" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="SLBanRa" fill="#FFCC00" barSize={30} />
+                        <Line type="monotone" dataKey="SLBanRa" stroke="red" strokeWidth={4} activeDot={{ r: 8 }} />    
+                </ComposedChart>
+                : tieuchi === "ChooseYearAllQuarter" ?
+                <ComposedChart
+                    className={styles.chartDetail}
+                    width={700}
+                    height={500}
+                    data={statisticTable}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="Quy" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="SLBanRa" fill="#FFCC00" barSize={30} />
+                        <Line type="monotone" dataKey="SLBanRa" stroke="red" strokeWidth={4} activeDot={{ r: 8 }} />    
+                </ComposedChart>
+                : tieuchi === "ChooseYearAllMonth" ?
+                <ComposedChart
+                    className={styles.chartDetail}
+                    width={700}
+                    height={500}
+                    data={statisticTable}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="Thang" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="SLBanRa" fill="#FFCC00" barSize={30} />
+                        <Line type="monotone" dataKey="SLBanRa" stroke="red" strokeWidth={4} activeDot={{ r: 8 }} />    
+                </ComposedChart>
+                : tieuchi === "ChooseQuarterAllYear"  || tieuchi === "ChooseMonthAllYear" ?
+                <ComposedChart
+                    className={styles.chartDetail}
+                    width={700}
+                    height={500}
+                    data={statisticTable}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="Nam" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="SLBanRa" fill="#FFCC00" barSize={30} />
+                        <Line type="monotone" dataKey="SLBanRa" stroke="red" strokeWidth={4} activeDot={{ r: 8 }} />    
+                </ComposedChart>
+                : <></>
+                : <></>
+                : <></>
+            }
+            </Container>
+            <br/>
             <TextField
                 className={styles.search}
                 id="standard-textarea"
@@ -399,7 +517,8 @@ export default function NhuCauThucPhamCungKy(props) {
                     <TableHead>
                         <TableRow>
                         {
-                            Object.keys(statisticTable[0]).map((colName, index) => {
+                            Object.keys(statisticTable[0])
+                            .map((colName, index) => {
                                 if (index === Object.keys(statisticTable[0]).length - 1)
                                     return <TableCell align="left" onClick={()=>sorting(colName)} key={`column-${index + 1}`}><b>{colName}</b></TableCell>
                                return <TableCell align="left" onClick={()=>sorting(colName)} key={`column-${index + 1}`}><b>{colName}</b></TableCell>
@@ -410,11 +529,28 @@ export default function NhuCauThucPhamCungKy(props) {
                     <TableBody id="tdata">
                         {
                             statisticTable
-                            .filter((val, index) =>{
+                            .filter((val, index) =>
+                            {
                                 if (search === "")
                                     return val;
                                 else if (Object.values(val).toString().includes(search))
                                     return val;
+                            })
+                            .filter(item =>
+                            {
+                                if (tensp !== "All" && tenncc !== "All")
+                                {
+                                    return (item.TenSP == tensp && item.TenNCC == tenncc)
+                                }
+                                else if (tensp != 0 && tenncc == 0)
+                                {
+                                    return (item.TenSP == tensp)
+                                }
+                                else if (tensp == 0 && tenncc != 0)
+                                {
+                                    return (item.TenNCC == tenncc)
+                                }
+                                else return true;
                             })
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((item, index) => {

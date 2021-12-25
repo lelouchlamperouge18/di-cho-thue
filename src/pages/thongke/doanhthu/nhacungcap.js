@@ -169,6 +169,34 @@ export default function DoanhThuNCC(props) {
             <h1 class={styles.title}>
                 THỐNG KÊ DOANH THU <br/> CHO NHÀ CUNG CẤP
             </h1>
+
+            <h5 className={styles.nameChartMain}>
+                Doanh thu các tháng trong năm vừa qua
+            </h5>
+            {
+                data_chart && data_chart.length > 0 ?
+                <ComposedChart
+                    className={styles.chartMain}
+                    width={800} 
+                    height={400}
+                    data={data_chart}
+                    margin={{
+                        top: 20,
+                        right: 20,
+                        bottom: 20,
+                        left: 20,
+                    }}
+                    >
+                    <CartesianGrid stroke="#f5f5f5" />
+                    <XAxis dataKey="Thang" scale="band" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="TongDoanhThu" barSize={30} fill="#000099" />
+                    <Line type="monotone" dataKey="TongDoanhThu" strokeWidth={3} stroke="#ff7300" />
+                </ComposedChart>
+                : <></>
+            }
             <FormControl component="fieldset">
                 <FormLabel component="legend">Các tiêu chí thống kê:</FormLabel>
                 <RadioGroup name="radio-buttons-group" defaultValue="AllYear">
@@ -231,46 +259,18 @@ export default function DoanhThuNCC(props) {
                     </FormControl>
                 </RadioGroup>
             </FormControl>
-            &emsp;&emsp;
+            <br/><br/><br/>
             <Button variant="contained" className={styles.select}
                     onClick={ShowData}>
                 Xem thống kê 
             </Button>  
-            <div className={styles.nameChartMain}>
-                Doanh thu các tháng trong năm vừa qua
-            </div>
-            {
-                data_chart && data_chart.length > 0 ?
-                <ComposedChart
-                    className={styles.chartMain}
-                    width={600} 
-                    height={400}
-                    data={data_chart}
-                    margin={{
-                        top: 20,
-                        right: 20,
-                        bottom: 20,
-                        left: 20,
-                    }}
-                    >
-                    <CartesianGrid stroke="#f5f5f5" />
-                    <XAxis dataKey="Thang" scale="band" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Bar dataKey="TongDoanhThu" barSize={30} fill="#000099" />
-                    <Line type="monotone" dataKey="TongDoanhThu" stroke="#ff7300" />
-                </ComposedChart>
-                : <></>
-            }
-            
             <br/><br/>
             <Typography className={styles.text} variant="h7">
                 {
                     'All Rows: ' + statisticTable.length
                 }
             </Typography> 
-            <br/>
+            <br/><hr/>
             <h5 className={styles.titleStatistic}>
                 {
                     tieuchi === "AllYear" ? 
@@ -285,6 +285,45 @@ export default function DoanhThuNCC(props) {
                         'Thống kê doanh thu tất cả các năm theo tháng ' + month : ''
                 }
             </h5>
+            <br/>
+            <Container>
+            {
+            statisticTable && statisticTable.length > 0 ?
+            <ComposedChart
+                className={styles.chartDetail}
+                width={700}
+                height={400}
+                data={statisticTable}
+                syncId="anyId"
+                margin={{
+                top: 10,
+                right: 30,
+                left: 0,
+                bottom: 0,
+                }}
+            >
+                <CartesianGrid strokeDasharray="3 3" />
+                {
+                    tieuchi === "AllYear" ?
+                        <XAxis dataKey="Nam" /> : 
+                    tieuchi === "ChooseYearAllQuarter" ?
+                        <XAxis dataKey="Quy" /> :
+                    tieuchi === "ChooseYearAllMonth" ?
+                        <XAxis dataKey="Thang" /> :
+                    tieuchi === "ChooseQuarterAllYear" || 
+                    tieuchi === "ChooseMonthAllYear" ?
+                        <XAxis dataKey="Nam" /> : <></>
+                }
+                
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="TongDoanhThu" barSize={30} fill="	#00CC99" />
+                <Line type="monotone" dataKey="TongDoanhThu" strokeWidth={3} stroke="red" fill="#82ca9d" />
+            </ComposedChart>
+            : <></>
+            }
+            </Container>
+            <br/>
             <TextField
                 className={styles.search}
                 id="standard-textarea"
@@ -345,41 +384,8 @@ export default function DoanhThuNCC(props) {
             }
             </div>
             <br/>
-            {
-            statisticTable && statisticTable.length > 0 ?
-            <ComposedChart
-                className={styles.chartDetail}
-                width={700}
-                height={400}
-                data={statisticTable}
-                syncId="anyId"
-                margin={{
-                top: 10,
-                right: 30,
-                left: 0,
-                bottom: 0,
-                }}
-            >
-                <CartesianGrid strokeDasharray="3 3" />
-                {
-                    tieuchi === "AllYear" ?
-                        <XAxis dataKey="Nam" /> : 
-                    tieuchi === "ChooseYearAllQuarter" ?
-                        <XAxis dataKey="Quy" /> :
-                    tieuchi === "ChooseYearAllMonth" ?
-                        <XAxis dataKey="Thang" /> :
-                    tieuchi === "ChooseQuarterAllYear" || 
-                    tieuchi === "ChooseMonthAllYear" ?
-                        <XAxis dataKey="Nam" /> : <></>
-                }
-                
-                <YAxis />
-                <Tooltip />
-                <Line type="monotone" dataKey="TongDoanhThu" stroke="#82ca9d" fill="#82ca9d" />
-                <Bar dataKey="TongDoanhThu" barSize={20} fill="	#00CC99" />
-            </ComposedChart>
-            : <></>
-            }
+            
+            
             <br/> 
             </Container>
 

@@ -21,7 +21,7 @@
 
 .select{
     width: 200px;
-    left:90px;
+    left: 120px;
     height: 40px;
 }
 
@@ -64,16 +64,12 @@
 }
 
 .chartMain{
-    position: absolute;
     float: right;
-    right: 100px;
-    top: 100px;
+    right: 70px;
 }
 
 .nameChartMain{
-    position: absolute;
-    right: 370px;
-    top: 370px;
+    text-align: center;
     font-size: large;
     color: brown;
     font-weight: bold;
