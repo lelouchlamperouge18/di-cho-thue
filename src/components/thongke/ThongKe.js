@@ -32,7 +32,7 @@ export default function ThongKe() {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        XEM NGAY ➜
+                        <Link href="/thongke/mathangthietyeu">XEM NGAY ➜</Link>
                     </Button>
                 </CardActions>
             </Card>
@@ -54,7 +54,7 @@ export default function ThongKe() {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        XEM NGAY ➜
+                        <Link href="/thongke/nhucauthucphamcungky">XEM NGAY ➜</Link>
                     </Button>
                 </CardActions>
             </Card>

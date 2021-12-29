@@ -20,6 +20,9 @@ export default function Navbar({ toggle }) {
                 <div className={styles.navMenu}>
                     <ul>
                         <li>
+                            <Link href="/feedback/nhacungcap" onClick={toggle}><a className={styles.navLink}>Feedback NCC</a></Link>
+                        </li>
+                        <li>
                             <Link href="/about" onClick={toggle}><a className={styles.navLink}>About</a></Link>
                         </li>
                         <li>
