@@ -1,0 +1,81 @@
+.table {
+    min-width: 650px;
+}
+
+.title {
+    text-align: center;
+    padding: 35px 35px;
+    font-size: 40px;
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-international-vegetarian-day-simple-and-fresh-banner-image_197020.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search{
+    background-color: white;
+    margin-left: 200px;
+    width: 40%;
+    left: 360px;
+    border-radius: 0.5rem;
+}
+
+.select{
+    width: 200px;
+    left: 120px;
+    height: 40px;
+}
+
+
+
+.combobox{
+    width: 200px;
+}
+
+
+.tableStyle{
+    text-align: center;
+}
+
+.titleStatistic{
+    color: brown;
+    font-size: 20px;
+    text-align: center;
+}
+
+.text{
+    font-weight: bold;
+    color : maroon;
+    font-style: italic;
+}
+
+
+.export{
+    width: 200px;
+    height: 40px;
+    font-size: 17px;
+    background-color:silver;
+    color:black;
+    font-weight: bold;
+    border-radius: 1rem;
+}
+
+.export:hover{
+    background-color:darkgrey;
+}
+
+.chartMain{
+    float: right;
+    right: 70px;
+}
+
+.nameChartMain{
+    text-align: center;
+    font-size: large;
+    color: brown;
+    font-weight: bold;
+}
+
+.chartDetail{
+    position: relative;
+    margin: 0 auto;
+}
