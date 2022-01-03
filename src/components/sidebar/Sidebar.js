@@ -18,6 +18,9 @@ export default function Sidebar({ isOpen, toggle }) {
                         <Link href="/contact" onClick={toggle}><a className={styles.sideLink}>Contact</a></Link>
                     </li>
                     <li>
+                        <Link href="/orders" onClick={toggle}><a className={styles.navLink}>Orders</a></Link>
+                    </li>
+                    <li>
                         <Link href="/sign-in" onClick={toggle}><a className={styles.navLink}>Sign In</a></Link>
                     </li>
                 </ul>

@@ -70,7 +70,7 @@ export default function Contact(props) {
                             <TableRow>
                                 <TableCell align="left"><b>Thời gian</b></TableCell>
                                 <TableCell align="left"><b>Feedback</b></TableCell>
-                                <TableCell align="left"><b>Feedback</b></TableCell>
+                                <TableCell align="left"><b>Trạng thái</b></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
