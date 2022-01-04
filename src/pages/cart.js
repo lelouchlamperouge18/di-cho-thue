@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 
 import { Button, Container, Input, TextField } from '@material-ui/core';
 import CartRow from '../components/giohang/CartRow';
+import { formatMoney } from '../util/money';
 
 const mapData = (results) => {
   const data = [];
@@ -125,7 +126,7 @@ export default function Contact(props) {
           </Table>
         </TableContainer>
         <br />
-        <div className="m-5">Subtotal: {total} vnđ</div>
+        <div className="m-5">Subtotal: {formatMoney(total)} vnđ</div>
         <br />
         <Button variant="contained" color="primary">
           Checkout

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, TableCell, TableRow } from '@material-ui/core';
+import { formatMoney } from '../../util/money';
 
 CartRow.propTypes = {};
 
@@ -18,8 +19,10 @@ function CartRow(props) {
         <span>{row.quantity}</span>
         <Button onClick={() => decreaseByOne(row.id)}>-</Button>
       </TableCell>
-      <TableCell align="left">{row.price}</TableCell>
-      <TableCell align="left">{row.price * row.quantity}</TableCell>
+      <TableCell align="left">{formatMoney(row.price)} vnđ</TableCell>
+      <TableCell align="left">
+        {formatMoney(row.price * row.quantity)} vnđ
+      </TableCell>
       <TableCell align="left">
         <Button onClick={() => removeFromCart(row.id)} variant="contained">
           Hủy
