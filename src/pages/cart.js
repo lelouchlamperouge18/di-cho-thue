@@ -15,7 +15,22 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { Button, Container, Input, TextField } from '@material-ui/core';
+import CartRow from '../components/giohang/CartRow';
 
+const mapData = (results) => {
+  const data = [];
+  results.forEach((item) => {
+    const newItem = {};
+    newItem.id = item.maSpGioHang;
+    newItem.quantity = item.soLuong;
+    newItem.producer = item.spncc.nsx;
+    newItem.name = item.spncc.chitietsp.tenSp;
+    newItem.price = item.spncc.gia;
+    data.push(newItem);
+  });
+
+  return data;
+};
 export default function Contact(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(props.data);
@@ -27,11 +42,28 @@ export default function Contact(props) {
 
   const removeFromCart = (id) => {
     const filter = data.filter((item) => item.id != id);
-    axios
-      .delete(`http://localhost:8080/api/giohangs/1/items/${id}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+    axios.delete(`http://localhost:8080/api/giohangs/1/items/${id}`);
     setData(filter);
+  };
+
+  const increaseByOne = (id) => {
+    axios
+      .patch(`http://localhost:8080/api/giohangs/1/items/${id}/increaseByOne`)
+      .then((res) => {
+        const results = mapData(res.data.sanPhamList);
+        setData(results);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const decreaseByOne = (id) => {
+    axios
+      .patch(`http://localhost:8080/api/giohangs/1/items/${id}/decreaseByOne`)
+      .then((res) => {
+        const results = mapData(res.data.sanPhamList);
+        setData(results);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -39,9 +71,8 @@ export default function Contact(props) {
       sum += product.quantity * product.price;
       return sum;
     }, 0);
-    console.log(total);
     setTotal(total);
-  }, [removeFromCart]);
+  }, [removeFromCart, increaseByOne, decreaseByOne]);
 
   return (
     <div className="Contact">
@@ -82,26 +113,13 @@ export default function Contact(props) {
             </TableHead>
             <TableBody>
               {data.map((row) => (
-                <TableRow key={row.id}>
-                  <TableCell component="th" scope="row">
-                    {row.id}
-                  </TableCell>
-                  <TableCell align="left">{row.name}</TableCell>
-                  <TableCell align="left">{row.producer}</TableCell>
-                  <TableCell align="left">
-                    <TableCell align="left">{row.quantity}</TableCell>
-                  </TableCell>
-                  <TableCell align="left">{row.price}</TableCell>
-                  <TableCell align="left">{row.price * row.quantity}</TableCell>
-                  <TableCell align="left">
-                    <Button
-                      onClick={() => removeFromCart(row.id)}
-                      variant="contained"
-                    >
-                      Hủy
-                    </Button>
-                  </TableCell>
-                </TableRow>
+                <CartRow
+                  key={row.id}
+                  row={row}
+                  removeFromCart={removeFromCart}
+                  increaseByOne={increaseByOne}
+                  decreaseByOne={decreaseByOne}
+                />
               ))}
             </TableBody>
           </Table>
@@ -120,22 +138,7 @@ export default function Contact(props) {
 export async function getStaticProps() {
   const res = await fetch(`http://localhost:8080/api/giohangs/1/items`);
   const results = await res.json();
-  const data = [];
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  } else {
-    results.forEach((item) => {
-      const newItem = {};
-      newItem.id = item.maSpGioHang;
-      newItem.quantity = item.soLuong;
-      newItem.producer = item.spncc.nsx;
-      newItem.name = item.spncc.chitietsp.tenSp;
-      newItem.price = item.spncc.gia;
-      data.push(newItem);
-    });
-  }
+  const data = mapData(results);
   return {
     props: { data }, // will be passed to the page component as props
   };
