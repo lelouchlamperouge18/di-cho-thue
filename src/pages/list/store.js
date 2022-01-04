@@ -70,17 +70,6 @@ export default function Store(props) {
 }
 
 export async function getStaticProps(){
-    // HERE HOW TO FETCH DATA WITH API
-    // const res = await fetch(`https://.../data`)
-    // const data = await res.json()
-    // if (!data) {
-    //     return {
-    //       notFound: true,
-    //     }
-    // }
-    // return {
-    //     props: { data }, // will be passed to the page component as props
-    // }
     const data = [
         {MaNCC: 1, TenNCC: 'Bách hóa xanh TĐ', GiayPhepKinhDoanh: 'GP10112020', SDT: '0129837461', Email: 'bhx@yahoo.com', TinhTP: 'TPHCM', LoaiVungDich: 'Vùng đỏ'},
         {MaNCC: 2, TenNCC: 'Siêu thị BigC', GiayPhepKinhDoanh: 'GP10112021', SDT: '0129837222', Email: 'bigc@yahoo.com', TinhTP: 'Bình Dương', LoaiVungDich: 'Vùng vàng'},

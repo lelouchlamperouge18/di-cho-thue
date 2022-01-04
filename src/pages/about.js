@@ -26,7 +26,7 @@ export default function About() {
                     <code>ABOUT THIS APP</code>
                 </h1>
                 <div className={styles.About__info}>
-                    <code>⬤ DICHOTHUE-R07 web-app is a site for people who want to rent s.o go to market for theirs.</code> <br></br>
+                    <code>⬤ DICHOTHUE-R07 web-app is a site for people who want to rent someone go to market for theirs.</code> <br></br>
                     <code>⬤ Nguyễn Lê Ngọc Tần - 18120553</code> <br></br>
                     <code>⬤ Nguyễn Văn Trị - 18120614</code> <br></br>
                     <code>⬤ Phạm Văn Minh Phương - 18120227</code> <br></br>
@@ -34,7 +34,7 @@ export default function About() {
                     <code>⬤ Ksor Âu - 18120281</code> <br></br>
                     <code>⬤ Lê Hữu Thanh - 18120560</code> <br></br>
                     <code>⬤ Nguyễn Thanh Thi - 18120570</code> <br></br>
-                    <code>⬤ Latest update: November 24th, 2021.</code> <br></br>
+                    <code>⬤ Latest update: January 3rd, 2022.</code> <br></br>
                 </div>
                 <br></br>
             </Container>

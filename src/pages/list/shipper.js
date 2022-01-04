@@ -70,17 +70,6 @@ export default function Shipper(props) {
 }
 
 export async function getStaticProps(){
-    // HERE HOW TO FETCH DATA WITH API
-    // const res = await fetch(`https://.../data`)
-    // const data = await res.json()
-    // if (!data) {
-    //     return {
-    //       notFound: true,
-    //     }
-    // }
-    // return {
-    //     props: { data }, // will be passed to the page component as props
-    // }
     const data = [
         {MaShipper: 1, TenShipper: 'Hoang Cong Son', SDT: '09213921873', Email: 'son@gmail.com', CMND: '1239210', MaDVVC: 2, GioiTinh: 'Nam'},
         {MaShipper: 2, TenShipper: 'Nguyen Van Tri', SDT: '02133243244', Email: 'tri@gmail.com', CMND: '1239210', MaDVVC: 3, GioiTinh: 'Nam'},
