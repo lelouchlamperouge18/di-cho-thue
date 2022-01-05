@@ -68,10 +68,26 @@ export default function Contact(props) {
   };
 
   useEffect(() => {
-    const total = data.reduce((sum, product) => {
-      sum += product.quantity * product.price;
-      return sum;
-    }, 0);
+    async function getData() {
+      try {
+        const res = await fetch(`http://localhost:8080/api/giohangs/1/items`);
+        const results = await res.json();
+        const data = mapData(results);
+        return data;
+      } catch (error) {}
+    }
+    const result = getData();
+    setData(result);
+  }, []);
+
+  useEffect(() => {
+    const total =
+      data && data.length > 0
+        ? data.reduce((sum, product) => {
+            sum += product.quantity * product.price;
+            return sum;
+          }, 0)
+        : 0;
     setTotal(total);
   }, [removeFromCart, increaseByOne, decreaseByOne]);
 
@@ -113,15 +129,17 @@ export default function Contact(props) {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map((row) => (
-                <CartRow
-                  key={row.id}
-                  row={row}
-                  removeFromCart={removeFromCart}
-                  increaseByOne={increaseByOne}
-                  decreaseByOne={decreaseByOne}
-                />
-              ))}
+              {data && data.length > 0
+                ? data.map((row) => (
+                    <CartRow
+                      key={row.id}
+                      row={row}
+                      removeFromCart={removeFromCart}
+                      increaseByOne={increaseByOne}
+                      decreaseByOne={decreaseByOne}
+                    />
+                  ))
+                : ''}
             </TableBody>
           </Table>
         </TableContainer>
@@ -134,13 +152,4 @@ export default function Contact(props) {
       </Container>
     </div>
   );
-}
-
-export async function getStaticProps() {
-  const res = await fetch(`http://localhost:8080/api/giohangs/1/items`);
-  const results = await res.json();
-  const data = mapData(results);
-  return {
-    props: { data }, // will be passed to the page component as props
-  };
 }
