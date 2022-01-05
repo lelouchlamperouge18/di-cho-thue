@@ -372,7 +372,11 @@ export default function DoanhThuNCC(props) {
                             .map((item, index) => {
                                 const rowCells = [];
                                 Object.values(item).forEach((val, index) => {
-                                    rowCells.push(<TableCell>{val}</TableCell>)
+                                    if (index === Object.values(item).length - 1)
+                                        rowCells.push(<TableCell>{val.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')}
+                                        </TableCell>)
+                                    else
+                                        rowCells.push(<TableCell>{val}</TableCell>)
                                 })
                                 return <TableRow key={`row-${index+1}`}>{rowCells}</TableRow>;
                             })
