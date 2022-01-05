@@ -16,6 +16,7 @@
     "d3-scale-chromatic": "^3.0.0",
     "next": "^11.1.3",
     "next-auth": "^3.29.0",
+    "querystring": "^0.2.1",
     "react": "^17.0.2",
     "react-bootstrap-table-next": "^1.1.0",
     "react-chartjs-2": "^4.0.0",
@@ -23,6 +24,7 @@
     "react-html-table-to-excel": "^2.0.0",
     "react-icons": "^4.2.0",
     "react-redux": "7.2.2",
+    "react-router-dom": "^6.2.1",
     "recharts": "^2.1.8",
     "save": "^2.4.0",
     "styled-components": "^5.3.1"
