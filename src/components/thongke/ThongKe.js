@@ -23,7 +23,7 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê (7)
+                        Thống kê
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         Thống kê các mặt hàng thiết yếu
@@ -45,16 +45,38 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê (8)
+                        Thống kê
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Thống kê nhu cầu thực phẩm cùng kì
+                        Thống kê nhu cầu thực phẩm cùng kỳ
                     </Typography>
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
                         <Link href="/thongke/nhucauthucphamcungky">XEM NGAY ➜</Link>
+                    </Button>
+                </CardActions>
+            </Card>
+            <Card className={styles.root}>
+                <CardActionArea>
+                    <CardMedia
+                    className={styles.media}
+                    image="https://amis.misa.vn/wp-content/uploads/2021/10/doanh-thu-cu%CC%89a-doanh-nghie%CC%A3%CC%82p.png"
+                    title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        Thống kê
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        Thống kê doanh thu cho đối tác
+                    </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary">
+                        <Link href="/thongke/doanhthu/nhacungcap">XEM NGAY ➜</Link>
                     </Button>
                 </CardActions>
             </Card>
