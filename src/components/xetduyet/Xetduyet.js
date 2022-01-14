@@ -32,7 +32,7 @@ export default function XetDuyet() {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        <Link href="#">XEM NGAY ➜</Link>
+                        <Link href="/list/store">XEM NGAY ➜</Link>
                     </Button>
                 </CardActions>
             </Card>

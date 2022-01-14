@@ -71,7 +71,8 @@ export default function Navbar({ toggle }) {
                                 onClose={handleClose_KH}
                             >
                                 <MenuItem onClick={handleClose_KH}><Link href=""><a>Đăng ký tài khoản</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_KH}><Link href=""><a>Giỏ hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_KH}><Link href="/cart"><a>Giỏ hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_KH}><Link href="/orders"><a>Đơn hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/theodoitrangthaidonhang"><a>Theo dõi đơn hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/lichsumuahang"><a>Lịch sử mua hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href=""><a>Phản hồi khách hàng</a></Link></MenuItem>
@@ -111,7 +112,7 @@ export default function Navbar({ toggle }) {
                                 onClose={handleClose_DVVC}
                             >
                                 <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Đăng ký vận chuyển</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Kiểm tra thông tin người giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_DVVC}><Link href="/list/shipper"><a>Kiểm tra thông tin người giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/thongke/doanhthu/donvivanchuyen"><a>Thống kê thu nhập DVVC</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Lịch sử giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Phản hồi DVVC</a></Link></MenuItem>
