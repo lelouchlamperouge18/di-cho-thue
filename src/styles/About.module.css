@@ -1,11 +1,37 @@
+.About {
+    color: black;
+    padding: 20px 70px;
+    text-align: left;
+    display: flex;
+    justify-content: space-around;
+}
+
 .About__title {
     font-size: 50px;
     text-align: center;
     margin: 50px 50px;
 }
 
+.Coder__title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .About__info {
-    padding-top: 30px;
-    padding-bottom: 50px;
     font-size: 16px;
+}
+
+.DetailTitle{
+    font-size: 20px;
+    text-align: center;
+    margin: 0px;
+}
+
+
+.root {
+    width: 220px;
+}
+
+.media {
+    height: 140px;
 }

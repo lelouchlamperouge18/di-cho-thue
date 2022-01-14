@@ -17,12 +17,12 @@ export default function HomeIntro() {
             <div className={styles.btnHomeIntro}>
                 <Link href="/about">
                     <a title="About us" className={styles.tryItFree}>
-                        About us
+                        Thông tin
                     </a>
                 </Link>
                 <Link href="/contact">
                     <a title="Contact" className={styles.tryInteractiveDemo}>
-                        Contact
+                        Liên hệ
                     </a>
                 </Link>
             </div>

@@ -23,7 +23,7 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê
+                        Mặt hàng
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         Thống kê các mặt hàng thiết yếu
@@ -45,7 +45,7 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê
+                        Nhu cầu thực phẩm
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         Thống kê nhu cầu thực phẩm cùng kỳ
@@ -62,37 +62,15 @@ export default function ThongKe() {
                 <CardActionArea>
                     <CardMedia
                     className={styles.media}
-                    image="https://amis.misa.vn/wp-content/uploads/2021/10/doanh-thu-cu%CC%89a-doanh-nghie%CC%A3%CC%82p.png"
-                    title="Contemplative Reptile"
-                    />
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p">
-                        Thống kê doanh thu cho đối tác
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        <Link href="/thongke/doanhthu/nhacungcap">XEM NGAY ➜</Link>
-                    </Button>
-                </CardActions>
-            </Card>
-            <Card className={styles.root}>
-                <CardActionArea>
-                    <CardMedia
-                    className={styles.media}
                     image="http://www.baodongnai.com.vn/dataimages/202108/original/images2394760_z2710661252827_f20d1ccfcf4c8b0909ce33edf7d70129.jpg"
                     title="Contemplative Reptile"
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê (6)
+                        Người dùng dịch vụ
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Thống kê khách hàng, shipper, cửa hàng ở các vùng đỏ vàng xanh
+                        Thống kê khách hàng, shipper, cửa hàng ở các vùng đỏ, vàng, xanh
                     </Typography>
                     </CardContent>
                 </CardActionArea>

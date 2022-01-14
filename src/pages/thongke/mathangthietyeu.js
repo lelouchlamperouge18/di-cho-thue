@@ -96,7 +96,7 @@ export default function MatHangThietYeu(props) {
   const [order, setOrder] = useState('ASC');
   const sorting = (col) => {
     if (order === 'ASC') {
-      if (col === 'Gia') {
+      if (col === 'Gia' || col === 'SLBanRa') {
         const sorted = [...thongKeList].sort((a, b) =>
           a[col] > b[col] ? 1 : -1
         );
@@ -111,7 +111,7 @@ export default function MatHangThietYeu(props) {
       }
     }
     if (order === 'DSC') {
-      if (col === 'Gia') {
+      if (col === 'Gia' || col === 'SLBanRa') {
         const sorted = [...thongKeList].sort((a, b) =>
           a[col] < b[col] ? 1 : -1
         );
@@ -286,6 +286,13 @@ export default function MatHangThietYeu(props) {
                 >
                   <b>Giá bán</b>
                 </TableCell>
+                <TableCell
+                  onClick={() => sorting('SLBanRa')}
+                  align="left"
+                  sortDirection
+                >
+                  <b>Số lượt mua</b>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody id="tdata">
@@ -366,6 +373,7 @@ export default function MatHangThietYeu(props) {
                         <TableCell align="left">{row.DonViTinh}</TableCell>
                         <TableCell align="left">{row.NSX}</TableCell>
                         <TableCell align="left">{row.Gia}</TableCell>
+                        <TableCell align="left">{row.SLBanRa}</TableCell>
                       </TableRow>
                     ))
                 : 'Loading'}
