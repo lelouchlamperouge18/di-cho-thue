@@ -27,7 +27,7 @@ export default function Contact() {
             </h1>
 
             <Container className={styles.listBtn}>
-            <Button variant="contained" href="https://github.com/lelouchlamperouge18/di-cho-thue.git" className={styles.btn}>
+            <Button variant="contained" target="_blank" href="https://github.com/lelouchlamperouge18/di-cho-thue.git" className={styles.btn}>
                 Front-end
             </Button> 
             &emsp;&emsp;
@@ -35,7 +35,7 @@ export default function Contact() {
                 Back-end
             </Button>
             &emsp;&emsp;
-            <Button variant="contained" href="https://drive.google.com/drive/folders/1UxN5I-rxP0-TEFb2-FgeJ0BIc1KFKQtu?usp=sharing" className={styles.btn}>
+            <Button variant="contained" target="_blank" href="https://drive.google.com/drive/folders/1UxN5I-rxP0-TEFb2-FgeJ0BIc1KFKQtu?usp=sharing" className={styles.btn}>
                 Drive quá trình
             </Button>
             
