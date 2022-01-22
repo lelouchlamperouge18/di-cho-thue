@@ -72,7 +72,7 @@ export default function Navbar({ toggle }) {
                             >
                                 <MenuItem onClick={handleClose_KH}><Link href=""><a>Đăng ký tài khoản</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/cart"><a>Giỏ hàng</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_KH}><Link href="/orders"><a>Đơn hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_KH}><Link href="/user/orders"><a>Đơn hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/theodoitrangthaidonhang"><a>Theo dõi đơn hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/lichsumuahang"><a>Lịch sử mua hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href=""><a>Phản hồi khách hàng</a></Link></MenuItem>

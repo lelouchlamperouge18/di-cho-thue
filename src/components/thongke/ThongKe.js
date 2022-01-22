@@ -76,7 +76,7 @@ export default function ThongKe() {
                 </CardActionArea>
                 <CardActions>
                     <Button size="small" color="primary">
-                        XEM NGAY ➜
+                        <Link href="/thongke/vungdich">XEM NGAY ➜</Link>
                     </Button>
                 </CardActions>
             </Card>
