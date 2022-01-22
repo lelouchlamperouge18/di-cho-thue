@@ -29,12 +29,16 @@
     font-style: italic;
 }
 
-
 .export{
-    width: 200px;
+    width: 250px;
     height: 40px;
     font-size: 17px;
-    background-color:darkgray;
-    color: black;
+    background-color:silver;
+    color:black;
     font-weight: bold;
+    border-radius: 1rem;
+}
+
+.export:hover{
+    background-color:darkgrey;
 }

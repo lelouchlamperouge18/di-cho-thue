@@ -19,6 +19,27 @@ import TextField from '@material-ui/core/TextField';
 import { Container, Typography } from '@material-ui/core';
 import TablePagination from '@material-ui/core/TablePagination';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import * as FileSaver from "file-saver";
+import * as XLSX from "xlsx";
+
+export const ExportToExcel = ({ apiData, fileName }) => {
+  const fileType =
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
+  const fileExtension = ".xlsx";
+
+  const exportToCSV = (apiData, fileName) => {
+    const ws = XLSX.utils.json_to_sheet(apiData);
+    const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
+    const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
+    const data = new Blob([excelBuffer], { type: fileType });
+    FileSaver.saveAs(data, fileName + fileExtension);
+  };
+
+  return (
+    <button onClick={(e) => exportToCSV(apiData, fileName)}
+            className = {styles.export}>Export All Data as XLS</button>
+  );
+};
 
 export default function MatHangThietYeu(props) {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,7 +96,7 @@ export default function MatHangThietYeu(props) {
   const [order, setOrder] = useState('ASC');
   const sorting = (col) => {
     if (order === 'ASC') {
-      if (col === 'Gia') {
+      if (col === 'Gia' || col === 'SLBanRa') {
         const sorted = [...thongKeList].sort((a, b) =>
           a[col] > b[col] ? 1 : -1
         );
@@ -90,7 +111,7 @@ export default function MatHangThietYeu(props) {
       }
     }
     if (order === 'DSC') {
-      if (col === 'Gia') {
+      if (col === 'Gia' || col === 'SLBanRa') {
         const sorted = [...thongKeList].sort((a, b) =>
           a[col] < b[col] ? 1 : -1
         );
@@ -124,6 +145,9 @@ export default function MatHangThietYeu(props) {
     rowsPerPage -
     Math.min(rowsPerPage, thongKeList.length - page * rowsPerPage);
   console.log('page: ' + page + 'rowperpage: ' + rowsPerPage);
+
+  const fileName = "mydata";
+
   return (
     <div className="MatHangThietYeu">
       <Head>
@@ -221,8 +245,11 @@ export default function MatHangThietYeu(props) {
           table="table-to-xls"
           filename="tablexls"
           sheet="tablexls"
-          buttonText="Export as XLS"
+          buttonText="Export Showed Data as XLS"
         />
+        &nbsp;&nbsp;
+        <ExportToExcel apiData={thongKeList} fileName={fileName}/>  
+        
         <br />
         <br />
         <TableContainer component={Paper}>
@@ -258,6 +285,13 @@ export default function MatHangThietYeu(props) {
                   sortDirection
                 >
                   <b>Giá bán</b>
+                </TableCell>
+                <TableCell
+                  onClick={() => sorting('SLBanRa')}
+                  align="left"
+                  sortDirection
+                >
+                  <b>Số lượt mua</b>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -339,6 +373,7 @@ export default function MatHangThietYeu(props) {
                         <TableCell align="left">{row.DonViTinh}</TableCell>
                         <TableCell align="left">{row.NSX}</TableCell>
                         <TableCell align="left">{row.Gia}</TableCell>
+                        <TableCell align="left">{row.SLBanRa}</TableCell>
                       </TableRow>
                     ))
                 : 'Loading'}

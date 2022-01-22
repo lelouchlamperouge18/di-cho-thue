@@ -6,8 +6,9 @@ import Navbar from '../components/navbar/Navbar'
 import Sidebar from '../components/sidebar/Sidebar'
 import HomeIntro from '../components/home-intro/HomeIntro'
 import ThongKe from '../components/thongke/ThongKe'
-import KiemTraThongTin from '../components/kiemtrathongtin/KiemTraThongTin'
 import Footer from '../components/footer/Footer'
+import XetDuyet from '../components/xetduyet/Xetduyet'
+import QuanLy from '../components/quanly/QuanLy'
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,13 +27,18 @@ export default function Home() {
       <Navbar toggle={toggle} />
       <Container>
         <HomeIntro />
-        <h1>THỐNG KÊ</h1>
+        <hr/>
+        <h1>DANH MỤC XÉT DUYỆT</h1>
+        <br></br>
+        <XetDuyet />
+        <br></br>
+        <h1>DANH MỤC THỐNG KÊ</h1>
         <br></br>
         <ThongKe />
         <br></br>
-        <h1>KIỂM TRA THÔNG TIN</h1>
+        <h1>DANH MỤC QUẢN LÝ</h1>
         <br></br>
-        <KiemTraThongTin />
+        <QuanLy />
       </Container>
       <Footer />
     </div>

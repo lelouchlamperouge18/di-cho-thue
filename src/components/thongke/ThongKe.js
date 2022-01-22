@@ -23,7 +23,7 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê (7)
+                        Mặt hàng
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         Thống kê các mặt hàng thiết yếu
@@ -45,10 +45,10 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê (8)
+                        Nhu cầu thực phẩm
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Thống kê nhu cầu thực phẩm cùng kì
+                        Thống kê nhu cầu thực phẩm cùng kỳ
                     </Typography>
                     </CardContent>
                 </CardActionArea>
@@ -67,10 +67,10 @@ export default function ThongKe() {
                     />
                     <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        Thống kê (6)
+                        Người dùng dịch vụ
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Thống kê khách hàng, shipper, cửa hàng ở các vùng đỏ vàng xanh
+                        Thống kê khách hàng, shipper, cửa hàng ở các vùng đỏ, vàng, xanh
                     </Typography>
                     </CardContent>
                 </CardActionArea>
