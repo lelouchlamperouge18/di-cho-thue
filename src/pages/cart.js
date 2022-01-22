@@ -76,8 +76,7 @@ export default function Contact(props) {
         return data;
       } catch (error) {}
     }
-    const result = getData();
-    setData(result);
+    const result = getData().then(data => setData(data))
   }, []);
 
   useEffect(() => {
