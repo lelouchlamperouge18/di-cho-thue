@@ -32,7 +32,7 @@ const mapData = (results) => {
 
   return data;
 };
-export default function Contact(props) {
+export default function Cart(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(props.data);
   const [total, setTotal] = useState(0);
@@ -91,7 +91,7 @@ export default function Contact(props) {
   }, [removeFromCart, increaseByOne, decreaseByOne]);
 
   return (
-    <div className="Contact">
+    <div className="cart">
       <Head>
         <title>carts</title>
         <link rel="icon" href="/favicon.ico" />

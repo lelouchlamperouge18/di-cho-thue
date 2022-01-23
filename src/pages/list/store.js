@@ -2,7 +2,7 @@ import styles from '../../styles/list/Store.module.css'
 import Head from 'next/head'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,14 +14,26 @@ import Paper from '@material-ui/core/Paper';
 
 import { Container } from '@material-ui/core'
 
-export default function Store(props) {
+export default function Store() {
     const [isOpen, setIsOpen] = useState(false);
-
+	const [data, setData] = useState([])
     const toggle = () => {
         setIsOpen(!isOpen)
     }
-    const data = props.data;
 
+	useEffect(() => {
+		async function getData() {
+		  try {
+			const res = await fetch(`https://localhost:44357/api/nhacungcap`);
+			const results = await res.json();
+			return results;
+		  } catch (error) {}
+		}
+		const result = getData().then(data => setData(data))
+	  }, []);
+
+
+	  console.log(data);
     return (
         <div className="Store">
             <Head>
@@ -44,38 +56,27 @@ export default function Store(props) {
                         <TableCell align="left"><b>SDT</b></TableCell>
                         <TableCell align="left"><b>Email</b></TableCell>
                         <TableCell align="left"><b>TinhTP</b></TableCell>
-                        <TableCell align="left"><b>LoaiVungDich</b></TableCell>
+                        <TableCell align="left"><b>Số tài khoản ngân hàng</b></TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {data.map((row) => (
+                    {data && data.length > 0 ? data.map((row) => (
                         <TableRow key={row.MaShipper}>
                         <TableCell component="th" scope="row">
-                            {row.MaNCC}
+                            {row.maNcc}
                         </TableCell>
-                        <TableCell align="left">{row.TenNCC}</TableCell>
-                        <TableCell align="left">{row.GiayPhepKinhDoanh}</TableCell>
-                        <TableCell align="left">{row.SDT}</TableCell>
-                        <TableCell align="left">{row.Email}</TableCell>
-                        <TableCell align="left">{row.TinhTP}</TableCell>
-                        <TableCell align="left">{row.LoaiVungDich}</TableCell>
+                        <TableCell align="left">{row.tenNcc}</TableCell>
+                        <TableCell align="left">{row.giayPhepKinhDoanh}</TableCell>
+                        <TableCell align="left">{row.sdt}</TableCell>
+                        <TableCell align="left">{row.email}</TableCell>
+                        <TableCell align="left">{row.diaChi}</TableCell>
+                        <TableCell align="left">{row.soTaiKhoanNganHang}</TableCell>
                         </TableRow>
-                    ))}
+                    )) : ''}
                     </TableBody>
                 </Table>
             </TableContainer>
             </Container>
         </div>
     )
-}
-
-export async function getStaticProps(){
-    const data = [
-        {MaNCC: 1, TenNCC: 'Bách hóa xanh TĐ', GiayPhepKinhDoanh: 'GP10112020', SDT: '0129837461', Email: 'bhx@yahoo.com', TinhTP: 'TPHCM', LoaiVungDich: 'Vùng đỏ'},
-        {MaNCC: 2, TenNCC: 'Siêu thị BigC', GiayPhepKinhDoanh: 'GP10112021', SDT: '0129837222', Email: 'bigc@yahoo.com', TinhTP: 'Bình Dương', LoaiVungDich: 'Vùng vàng'},
-        {MaNCC: 3, TenNCC: 'Bách hóa xanh ĐN', GiayPhepKinhDoanh: 'GP10112022', SDT: '0129837333', Email: 'bhxdn@yahoo.com', TinhTP: 'Đồng Nai', LoaiVungDich: 'Vùng xanh'},
-    ]
-    return {
-        props: {data}
-    }
 }
