@@ -2,7 +2,7 @@ import styles from '../../styles/list/Shipper.module.css'
 import Head from 'next/head'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -14,14 +14,25 @@ import Paper from '@material-ui/core/Paper';
 
 import { Container } from '@material-ui/core'
 
-export default function Shipper(props) {
+export default function Shipper() {
     const [isOpen, setIsOpen] = useState(false);
-
+	const [data, setData] = useState([])
     const toggle = () => {
         setIsOpen(!isOpen)
     }
-    const data = props.data;
 
+	useEffect(() => {
+		async function getData() {
+		  try {
+			const res = await fetch(`https://localhost:44357/api/shipper`);
+			const results = await res.json();
+			return results;
+		  } catch (error) {
+		  }
+		}
+		const result = getData().then(data => setData(data))
+	  }, []);
+	  console.log(data);
     return (
         <div className="Shipper">
             <Head>
@@ -48,38 +59,24 @@ export default function Shipper(props) {
                     </TableRow>
                     </TableHead>
                     <TableBody>
-                    {data.map((row) => (
+                    {data && data.length > 0
+                ? data.map((row) => (
                         <TableRow key={row.MaShipper}>
                         <TableCell component="th" scope="row">
-                            {row.MaShipper}
+                            {row.maShipper}
                         </TableCell>
-                        <TableCell align="left">{row.TenShipper}</TableCell>
-                        <TableCell align="left">{row.SDT}</TableCell>
-                        <TableCell align="left">{row.Email}</TableCell>
-                        <TableCell align="left">{row.CMND}</TableCell>
-                        <TableCell align="left">{row.MaDVVC}</TableCell>
-                        <TableCell align="left">{row.GioiTinh}</TableCell>
+                        <TableCell align="left">{row.tenShipper}</TableCell>
+                        <TableCell align="left">{row.sdt}</TableCell>
+                        <TableCell align="left">{row.email}</TableCell>
+                        <TableCell align="left">{row.cmnd}</TableCell>
+                        <TableCell align="left">{row.maDvvc}</TableCell>
+                        <TableCell align="left">{row.gioiTinh}</TableCell>
                         </TableRow>
-                    ))}
+                    )) : ''}
                     </TableBody>
                 </Table>
             </TableContainer>
             </Container>
         </div>
     )
-}
-
-export async function getStaticProps(){
-    const data = [
-        {MaShipper: 1, TenShipper: 'Hoang Cong Son', SDT: '09213921873', Email: 'son@gmail.com', CMND: '1239210', MaDVVC: 2, GioiTinh: 'Nam'},
-        {MaShipper: 2, TenShipper: 'Nguyen Van Tri', SDT: '02133243244', Email: 'tri@gmail.com', CMND: '1239210', MaDVVC: 3, GioiTinh: 'Nam'},
-        {MaShipper: 3, TenShipper: 'Ksor Au', SDT: '2131232133', Email: 'au@gmail.com', CMND: '1239210', MaDVVC: 4, GioiTinh: 'Nam'},
-        {MaShipper: 4, TenShipper: 'Nguyen Le Ngoc Tan', SDT: '153532432', Email: 'tan@gmail.com', CMND: '1239210', MaDVVC: 2, GioiTinh: 'Nam'},
-        {MaShipper: 5, TenShipper: 'Pham Van Minh Phuong', SDT: '02133243244', Email: 'phuong@gmail.com', CMND: '1239210', MaDVVC: 2, GioiTinh: 'Nam'},
-        {MaShipper: 6, TenShipper: 'Le Huu Thanh', SDT: '2131232133', Email: 'thanh@gmail.com', CMND: '1239210', MaDVVC: 1, GioiTinh: 'Nam'},
-        {MaShipper: 7, TenShipper: 'Nguyen Thanh Thi', SDT: '153532432', Email: 'thi@gmail.com', CMND: '1239210', MaDVVC: 1, GioiTinh: 'Nam'},
-    ]
-    return {
-        props: {data}
-    }
 }
