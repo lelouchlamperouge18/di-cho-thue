@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { Container } from '@material-ui/core'
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
@@ -15,6 +15,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import axios from 'axios';
 
 export default function Contact(props) {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,9 +23,17 @@ export default function Contact(props) {
     const toggle = () => {
         setIsOpen(!isOpen)
     }
-    
-    const data = props.data;
 
+    const [data, setData] = useState([])
+    useEffect(()=>
+    {
+        fetch('http://localhost:8080/api/phanhoincc')
+        .then(response => response.json())
+        .then(result => setData(result))
+        .catch(error => console.log(error));
+    },[])
+
+console.log(data);
     return (
         <div className="FeedbackNCC">
             <Head>
@@ -76,9 +85,9 @@ export default function Contact(props) {
                         <TableBody>
                         {data.map((row) => (
                             <TableRow>
-                                <TableCell align="left">{row.time}</TableCell>
-                                <TableCell align="left">{row.feedback}</TableCell>
-                                <TableCell align="left">{row.status}</TableCell>
+                                <TableCell align="left">{row.thoiGian}</TableCell>
+                                <TableCell align="left">{row.noiDung}</TableCell>
+                                <TableCell align="left">{row.trangThai}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>
@@ -91,14 +100,3 @@ export default function Contact(props) {
     )
 }
 
-export async function getStaticProps(){
-    const data = [
-        {time: '2021-01-01', feedback: 'Cảm ơn kênh phân phối này', status: 'Đã ghi nhận'},
-        {time: '2021-01-02', feedback: 'Đề nghị xét duyệt thống kê báo cáo của NCC', status: 'NULL'},
-        {time: '2021-11-03', feedback: 'Xin trả hoa hồng trễ 2 ngày', status: 'Đã ghi nhận'},
-        {time: '2021-03-21', feedback: 'Chưa nhận được thông báo giảm giá', status: 'Đã ghi nhận'},
-    ]
-    return {
-        props: {data}
-    }
-}
