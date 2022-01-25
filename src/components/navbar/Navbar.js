@@ -115,7 +115,7 @@ export default function Navbar({ toggle }) {
                                 <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Đăng ký vận chuyển</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/list/shipper"><a>Kiểm tra thông tin người giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/thongke/doanhthu/donvivanchuyen"><a>Thống kê thu nhập DVVC</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Lịch sử giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_DVVC}><Link href="/lichsugiaohang"><a>Lịch sử giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Phản hồi DVVC</a></Link></MenuItem>
                             </Menu>
                         </li>
