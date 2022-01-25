@@ -92,8 +92,9 @@ export default function Navbar({ toggle }) {
                                 open={Boolean(anchorEl_NCC)}
                                 onClose={handleClose_NCC}
                             >
-                                <MenuItem onClick={handleClose_NCC}><Link href="/dangkibanhang"><a>Đăng ký bán hàng</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_NCC}><Link href=""><a>Đăng thông tin bán hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_NCC}><Link href="/nhacungcap/dangkibanhang"><a>Đăng ký bán hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_NCC}><Link href="/nhacungcap/dangthongtinhanghoa"><a>Đăng thông tin bán hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_NCC}><Link href="/nhacungcap/quanlyhanghoa"><a>Quản lý hàng hóa</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_NCC}><Link href="/thongke/doanhthu/nhacungcap"><a>Thống kê thu nhập NCC</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_NCC}><Link href="/feedback/nhacungcap"><a>Phản hồi NCC</a></Link></MenuItem>
                             </Menu>
