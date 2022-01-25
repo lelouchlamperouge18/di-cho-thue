@@ -75,8 +75,8 @@ export default function XetDuyet() {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        XEM NGAY ➜
+                <Button size="small" color="primary">
+                        <Link href="/dangkibanhang/xetduyetdkbh">XEM NGAY ➜</Link>
                     </Button>
                 </CardActions>
             </Card>
