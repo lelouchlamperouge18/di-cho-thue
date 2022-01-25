@@ -72,7 +72,7 @@ export default function Navbar({ toggle }) {
                             >
                                 <MenuItem onClick={handleClose_KH}><Link href=""><a>Đăng ký tài khoản</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/cart"><a>Giỏ hàng</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_KH}><Link href="/orders"><a>Đơn hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_KH}><Link href="/user/orders"><a>Đơn hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/theodoitrangthaidonhang"><a>Theo dõi đơn hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href="/lichsumuahang"><a>Lịch sử mua hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_KH}><Link href=""><a>Phản hồi khách hàng</a></Link></MenuItem>
@@ -112,7 +112,7 @@ export default function Navbar({ toggle }) {
                                 open={Boolean(anchorEl_DVVC)}
                                 onClose={handleClose_DVVC}
                             >
-                                <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Đăng ký vận chuyển</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_DVVC}><Link href="/dangkivanchuyen/dangkivanchuyen"><a>Đăng ký vận chuyển</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/list/shipper"><a>Kiểm tra thông tin người giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/thongke/doanhthu/donvivanchuyen"><a>Thống kê thu nhập DVVC</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/lichsugiaohang"><a>Lịch sử giao hàng</a></Link></MenuItem>
@@ -132,8 +132,8 @@ export default function Navbar({ toggle }) {
                                 open={Boolean(anchorEl_Shipper)}
                                 onClose={handleClose_Shipper}   
                             >
-                                <MenuItem onClick={handleClose_Shipper}><Link href=""><a>Tiếp nhận giao hàng</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_Shipper}><Link href=""><a>Xác nhận giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_Shipper}><Link href="/tiepnhanyeucau/yeucauvanchuyen"><a>Tiếp nhận giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_Shipper}><Link href="/xacnhangiaohang/capnhatgiaohang"><a>Xác nhận giao hàng</a></Link></MenuItem>
                             </Menu>
                         </li>
                         <li>

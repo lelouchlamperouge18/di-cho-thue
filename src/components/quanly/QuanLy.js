@@ -79,9 +79,9 @@ export default function QuanLy() {
                     </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Link href="">
+                    <Link href="/admin/orders">
                     <Button size="small" color="primary">
-                        XEM NGAY ➜
+                        <Link href="/admin/orders">XEM NGAY ➜</Link>
                     </Button>
                     </Link>
                 </CardActions>
