@@ -92,8 +92,9 @@ export default function Navbar({ toggle }) {
                                 open={Boolean(anchorEl_NCC)}
                                 onClose={handleClose_NCC}
                             >
-                                <MenuItem onClick={handleClose_NCC}><Link href="/dangkibanhang"><a>Đăng ký bán hàng</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_NCC}><Link href=""><a>Đăng thông tin bán hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_NCC}><Link href="/nhacungcap/dangkibanhang"><a>Đăng ký bán hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_NCC}><Link href="/nhacungcap/dangthongtinhanghoa"><a>Đăng thông tin bán hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_NCC}><Link href="/nhacungcap/quanlyhanghoa"><a>Quản lý hàng hóa</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_NCC}><Link href="/thongke/doanhthu/nhacungcap"><a>Thống kê thu nhập NCC</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_NCC}><Link href="/feedback/nhacungcap"><a>Phản hồi NCC</a></Link></MenuItem>
                             </Menu>
@@ -111,10 +112,10 @@ export default function Navbar({ toggle }) {
                                 open={Boolean(anchorEl_DVVC)}
                                 onClose={handleClose_DVVC}
                             >
-                                <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Đăng ký vận chuyển</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_DVVC}><Link href="/dangkivanchuyen/dangkivanchuyen"><a>Đăng ký vận chuyển</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/list/shipper"><a>Kiểm tra thông tin người giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href="/thongke/doanhthu/donvivanchuyen"><a>Thống kê thu nhập DVVC</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Lịch sử giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_DVVC}><Link href="/lichsugiaohang"><a>Lịch sử giao hàng</a></Link></MenuItem>
                                 <MenuItem onClick={handleClose_DVVC}><Link href=""><a>Phản hồi DVVC</a></Link></MenuItem>
                             </Menu>
                         </li>
@@ -131,8 +132,8 @@ export default function Navbar({ toggle }) {
                                 open={Boolean(anchorEl_Shipper)}
                                 onClose={handleClose_Shipper}   
                             >
-                                <MenuItem onClick={handleClose_Shipper}><Link href=""><a>Tiếp nhận giao hàng</a></Link></MenuItem>
-                                <MenuItem onClick={handleClose_Shipper}><Link href=""><a>Xác nhận giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_Shipper}><Link href="/tiepnhanyeucau/yeucauvanchuyen"><a>Tiếp nhận giao hàng</a></Link></MenuItem>
+                                <MenuItem onClick={handleClose_Shipper}><Link href="/xacnhangiaohang/capnhatgiaohang"><a>Xác nhận giao hàng</a></Link></MenuItem>
                             </Menu>
                         </li>
                         <li>

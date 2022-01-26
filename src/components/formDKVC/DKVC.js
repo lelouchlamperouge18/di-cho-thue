@@ -13,12 +13,14 @@ function Form(props) {
 		// eslint-disable-next-line no-console
 
 		const newNcc = {
-			tenNcc: data.get('tenNcc'),
-			giayPhepKinhDoanh: data.get('giayPhepKinhDoanh'),
-			sdt: data.get('sdt'),
-			diaChi: data.get('diaChi'),
-			email: data.get('email'),
-			soTaiKhoanNganHang: data.get('soTaiKhoanNganHang'),
+			TenDVVC: data.get('TenDVVC'),
+			GiayPhepKinhDoanh: data.get('GiayPhepKinhDoanh'),
+			SoTaiKhoanNganHang: data.get('SoTaiKhoanNganHang'),
+			SDT: data.get('SDT'),
+			DiaChi: data.get('DiaChi'),
+			Email: data.get('Email'),
+            PhiVanChuyen_KM: data.get('PhiVanChuyen_KM'),
+            TaiKhoan: data.get('TaiKhoan'),
   
 		  }
 
@@ -27,16 +29,16 @@ function Form(props) {
 
 	return (
 		<Container>
-          <Box component="form"  onSubmit={handleSubmit}  sx={{ mt: 3 }}>
+          <Box component="form" noValidate  onSubmit={handleSubmit}  sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
-                  name="tenNcc"
+                  name="TenDVVC"
                   required
                   fullWidth
-                  id="tenNcc"
-                  label="Tên cửa hàng"
+                  id="TenDVVC"
+                  label="Tên đơn vị vận chuyển"
                   autoFocus
                 />
               </Grid>
@@ -44,52 +46,54 @@ function Form(props) {
                 <TextField
                   required
                   fullWidth
-                  id="giayPhepKinhDoanh"
+                  id="GiayPhepKinhDoanh"
                   label="Mã giấy phép kinh doanh"
-                  name="giayPhepKinhDoanh"
+                  name="GiayPhepKinhDoanh"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Địa chỉ Email"
-                  name="email"
-                  autoComplete="email"
+                  name="SoTaiKhoanNganHang"
+                  label="Số tài khoản ngân hàng"
+                  id="SoTaiKhoanNganHang"
                 />
               </Grid>
+
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
                   fullWidth
-                  name="sdt"
+                  name="SDT"
                   label="Số điện thoại"
-                  id="sdt"
+                  id="SDT"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="Email"
+                  label="Địa chỉ Email"
+                  name="Email"
+                  autoComplete="Email"
                 />
               </Grid>
 			  <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="diaChi"
-                  label="Địa chỉ cửa hàng"
-                  id="diaChi"
+                  name="PhiVanChuyen_KM"
+                  label="Phí vận chuyển (theo km)"
+                  id="PhiVanChuyen_KM"
                 />
               </Grid>
-			  <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="soTaiKhoanNganHang"
-                  label="Số tài khoản ngân hàng"
-                  id="soTaiKhoanNganHang"
-                />
-              </Grid>
+
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="Đồng ý đăng kí cung cấp hàng hóa"
+                  label="Tôi đồng ý với các điều khoản và điều kiện"
                 />
               </Grid>
             </Grid>
@@ -97,7 +101,7 @@ function Form(props) {
               type="submit"
               fullWidth
               variant="contained"
-			  color='primary'
+			  color='Secondary'
             >
               Đăng kí
             </Button>

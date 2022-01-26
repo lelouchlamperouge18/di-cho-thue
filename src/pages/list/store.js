@@ -13,6 +13,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import { Container } from '@material-ui/core'
+import Footer from '../../components/footer/Footer'
 
 export default function Store() {
     const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +78,8 @@ export default function Store() {
                 </Table>
             </TableContainer>
             </Container>
+			<br />
+		<Footer />
         </div>
     )
 }

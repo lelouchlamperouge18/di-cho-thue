@@ -1,0 +1,55 @@
+.table {
+    min-width: 650px;
+}
+
+.title {
+    text-align: center;
+    padding: 35px 35px;
+    font-size: 40px;
+    background-image: url("https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-international-vegetarian-day-simple-and-fresh-banner-image_197020.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.select{
+    width: 300px;
+}
+
+
+.text{
+    font-weight: bold;
+    color : maroon;
+    font-style: italic;
+}
+
+
+.Button{
+    width: 250px;
+    height: 40px;
+}
+
+
+.groupcard
+{
+    color: black;
+    text-align: left;
+    display: flex;
+    text-align: left;
+    display: flex;
+}
+
+.pic
+{
+    width: 40px;
+    height: 30px;
+}
+
+.root {
+    width:100%;
+    margin: 0 20px 0 0;
+ 
+}
+
+.media {
+    height: auto;
+}

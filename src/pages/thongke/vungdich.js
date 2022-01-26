@@ -3,79 +3,94 @@ import Head from 'next/head'
 import Navbar from '../../components/navbar/Navbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import React, {useState} from 'react'
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import { Container } from '@material-ui/core'
 
 export default function Vungdich(props) {
     const [isOpen, setIsOpen] = useState(false);
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const toggle = () => {
-        setIsOpen(!isOpen)
+        setIsOpen(!isOpen)      
     }
-    const data = props.data;
+
+    var today = new Date();
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 
     return (
-        <div className="Vungdich">
-            <Head>
-                <title>Thống kê theo vùng dịch</title>
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-            <Sidebar isOpen={isOpen} toggle={toggle}/>
-            <Navbar toggle={toggle} />
-            <h1 class={styles.title}>
-                THỐNG KÊ THEO VÙNG DỊCH
-            </h1>
-            <Container>
-            {/* <TableContainer component={Paper}>
-                <Table className={styles.table} aria-label="simple table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell><b>Mã NCC</b></TableCell>
-                        <TableCell align="left"><b>Tên NCC</b></TableCell>
-                        <TableCell align="left"><b>GiayPhepKinhDoanh</b></TableCell>
-                        <TableCell align="left"><b>SDT</b></TableCell>
-                        <TableCell align="left"><b>Email</b></TableCell>
-                        <TableCell align="left"><b>TinhTP</b></TableCell>
-                        <TableCell align="left"><b>LoaiVungDich</b></TableCell>
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {data.map((row) => (
-                        <TableRow key={row.MaShipper}>
-                        <TableCell component="th" scope="row">
-                            {row.MaNCC}
-                        </TableCell>
-                        <TableCell align="left">{row.TenNCC}</TableCell>
-                        <TableCell align="left">{row.GiayPhepKinhDoanh}</TableCell>
-                        <TableCell align="left">{row.SDT}</TableCell>
-                        <TableCell align="left">{row.Email}</TableCell>
-                        <TableCell align="left">{row.TinhTP}</TableCell>
-                        <TableCell align="left">{row.LoaiVungDich}</TableCell>
-                        </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-            </TableContainer> */}
-            </Container>
-        </div>
-    )
-}
+    <div className="Vungdich">
+        <Head>
+            <title>Thống kê theo vùng dịch</title>
+            <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <Sidebar isOpen={isOpen} toggle={toggle}/>
+        <Navbar toggle={toggle} />
 
-export async function getStaticProps(){
-    const data = [
-        {MaNCC: 1, TenNCC: 'Bách hóa xanh TĐ', GiayPhepKinhDoanh: 'GP10112020', SDT: '0129837461', Email: 'bhx@yahoo.com', TinhTP: 'TPHCM', LoaiVungDich: 'Vùng đỏ'},
-        {MaNCC: 2, TenNCC: 'Siêu thị BigC', GiayPhepKinhDoanh: 'GP10112021', SDT: '0129837222', Email: 'bigc@yahoo.com', TinhTP: 'Bình Dương', LoaiVungDich: 'Vùng vàng'},
-        {MaNCC: 3, TenNCC: 'Bách hóa xanh ĐN', GiayPhepKinhDoanh: 'GP10112022', SDT: '0129837333', Email: 'bhxdn@yahoo.com', TinhTP: 'Đồng Nai', LoaiVungDich: 'Vùng xanh'},
-    ]
-    return {
-        props: {data}
-    }
+        <h1 class={styles.title}>
+            THỐNG KÊ THEO VÙNG DỊCH
+        </h1>
+        <Container style={{"text-align":"center"}}>
+            <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+                XEM KẾT QUẢ THỐNG KÊ
+            </Button>
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="alert-dialog-title"
+                aria-describedby="alert-dialog-description"
+            >
+                <DialogTitle id="alert-dialog-title">
+                    Kết quả thống kê tính đến {time}&nbsp;{date}
+                </DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-description">
+                    🔴 Số khách hàng ở vùng đỏ là: 3
+                    <br></br>
+                    ⚠️ Số khách hàng ở vùng vàng là: 1
+                    <br></br>
+                    💚 Số khách hàng ở vùng xanh là: 1
+                    <br></br>
+                    ---------------------------------
+                    <br></br>
+                    🔴 Số cửa hàng ở vùng đỏ là: 2
+                    <br></br>
+                    ⚠️ Số cửa hàng ở vùng vàng là: 1
+                    <br></br>
+                    💚 Số cửa hàng ở vùng xanh là: 1
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose} color="primary">
+                        OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
+
+            <br></br>
+            <img 
+                src="http://www.baodongnai.com.vn/dataimages/202108/original/images2394760_z2710661252827_f20d1ccfcf4c8b0909ce33edf7d70129.jpg" 
+                alt="vungdich"
+                width="500"
+                height="auto"
+                style={{"padding-top":"20px"}}
+            >
+            </img>
+        </Container>
+    </div>
+    )
 }

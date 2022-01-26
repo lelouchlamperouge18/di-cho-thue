@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import Head from 'next/head';
-import Sidebar from '../components/sidebar/Sidebar';
-import Navbar from '../components/navbar/Navbar';
-import Form from '../components/formRegister/Form';
+import Sidebar from '../../components/sidebar/Sidebar';
+import Navbar from '../../components/navbar/Navbar';
+import Form from '../../components/formDKVC/DKVC';
 import axios from 'axios';
 
-dangkibanhang.propTypes = {
+dangkivanchuyen.propTypes = {
 	
 };
 
-function dangkibanhang() {
+function dangkivanchuyen() {
 const [isOpen, setIsOpen] = useState(false);
   const [total, setTotal] = useState(0);
 
@@ -19,24 +19,24 @@ const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = (newNcc) => {
 	axios
-	.post('https://localhost:44357/api/KhachHang' ,newNcc)
+	.post('http://localhost:8080/api/dkvc' ,newNcc)
 	.then((res) => {
 	  alert('register success')
 	})
 	.catch((err) => console.log(err));
   } 
 	return (
-		<div className='dangkitaikhoan'>
+		<div className='dangkivanchuyen'>
 		<Head>
-        <title>dangkitaikhoan</title>
+        <title>Đăng kí vận chuyển</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
-      <h1 style={{ 'text-align': 'center', 'padding-top': '20' }}>Đăng kí tài khoản</h1>
+      <h1 style={{ 'text-align': 'center', 'padding-top': '20' }}>Đăng kí vận chuyển</h1>
 		<Form handleAddNew={handleSubmit} />
 		</div>
 	);
 }
 
-export default dangkitaikhoan;
+export default dangkivanchuyen;
