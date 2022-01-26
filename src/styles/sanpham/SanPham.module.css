@@ -1,0 +1,49 @@
+.table {
+    min-width: 650px;
+}
+
+.title {
+    text-align: center;
+    padding: 35px 35px;
+    font-size: 40px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.search{
+    background-color: white;
+    margin-left: 200px;
+    width: 40%;
+    float: left;
+}
+
+.select{
+    width: 200px;
+}
+
+
+.text{
+    font-weight: bold;
+    color : maroon;
+    font-style: italic;
+}
+
+
+.export{
+    width: 200px;
+    height: 40px;
+    font-size: 17px;
+    background-color:darkgray;
+    color: black;
+    font-weight: bold;
+}
+
+.buttonthem {
+    background-color: lightgreen;
+    display: inline-block;
+    margin: 10px;
+
+}
+.buttonxem {
+    background-color: rgb(75, 196, 196);
+}
