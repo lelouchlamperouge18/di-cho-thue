@@ -32,6 +32,10 @@ export default function HoSo(props) {
         setMancc(newMancc);
     };
 
+    const xetDuyetHoSo = (maHS_NCC) => {
+        fetch('https://localhost:44357/api/HoSo/DuyetHoSo'+ maHS_NCC)
+    };
+
     const [HoSoList, setHoSoList] = useState([]);
 
     //const [NCCList, setNCCList] = useState([])
@@ -83,7 +87,7 @@ export default function HoSo(props) {
                 </FormControl>
                 &emsp;&emsp;
                 <Button variant="contained" onClick={ShowData} className={styles.Button}>
-                    Xem thống kê
+                    Xem hồ sơ
                 </Button>
                 <br/><br/>
 
@@ -117,7 +121,7 @@ export default function HoSo(props) {
                                 </CardContent>
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
+                            <Button size="small" color="primary" onSubmit={xetDuyetHoSo(row.maHS_NCC)} >
                                 Xét duyệt 
                             </Button>
                         </CardActions>
