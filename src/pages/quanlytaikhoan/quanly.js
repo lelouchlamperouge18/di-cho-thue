@@ -16,7 +16,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
 import { Container } from '@material-ui/core';
 import Controls from '../../components/controls/Controls'
 
@@ -51,7 +50,7 @@ export default function TaiKhoan(props) {
     return (
         <div className="Accounts">
             <Head>
-                <title>Danh sách cửa hàng (NCC)</title>
+                <title>Danh sách tài khoản</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Sidebar isOpen={isOpen} toggle={toggle}/>
@@ -59,7 +58,6 @@ export default function TaiKhoan(props) {
             <h1 class={styles.title}>
                 QUẢN LÝ TÀI KHOẢN
             </h1>
-            <Button class={styles.btnthemtk} onClick={()=> setOpenPopupTK(true)}> Thêm tài khoản </Button>
             <Container>
             <TableContainer component={Paper}>
                 <Table className={styles.table} aria-label="simple table">

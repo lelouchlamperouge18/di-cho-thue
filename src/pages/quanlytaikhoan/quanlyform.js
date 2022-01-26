@@ -1,7 +1,10 @@
+
+
 import React, { useState, useEffect } from 'react'
 import { Grid, } from '@material-ui/core';
 import Controls from "../../components/controls/Controls";
 import { useForm, Form } from '../../components/useForm';
+import axios from 'axios'
 
 const TrangThaiItems = [
     { id: 'Đang hoạt động', title: 'Đang hoạt động' },
@@ -10,7 +13,7 @@ const TrangThaiItems = [
 
 
 const initialFValues = {
-    ID: 0,
+    ID: '',
     VaiTro: '',
     Username: '',
     TrangThai: '',
@@ -18,8 +21,10 @@ const initialFValues = {
 
 
 
+
 export default function TKForm(props) {
     const { addOrEdit, recordForEdit } = props
+
 
     const validate = (fieldValues = values) => {
         let temp = { ...errors }
@@ -48,11 +53,21 @@ export default function TKForm(props) {
         resetForm
     } = useForm(initialFValues, true, validate);
 
+
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()) {
             // addOrEdit(values, resetForm);
         }
+    }
+
+    const handleSubmitChange = (event) => {
+        axios
+        .put('https://localhost:44357/api/QuanLyTaiKhoan/',{ID: values.ID})
+        .then((res) => {
+	  alert('Chỉnh sửa thành công')
+	})
+	.catch((err) => console.log(err));
     }
 
     useEffect(() => {
@@ -67,17 +82,19 @@ export default function TKForm(props) {
             <Grid container>
                 <Grid item xs={6}>
                     <Controls.Input
+                        disable
                         name="username"
                         label="Username"
                         value={values.Username}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         error={errors.Username}
                     />
                     <Controls.Input
+                        disable
                         label="Vai Trò"
                         name="vaitro"
                         value={values.VaiTro}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         error={errors.VaiTro}
                     />
 
@@ -94,7 +111,8 @@ export default function TKForm(props) {
                     <div>
                         <Controls.Button
                             type="chinhsua"
-                            text="Chỉnh sửa" />
+                            text="Chỉnh sửa"
+                            onClick= {handleSubmitChange} />
                         <Controls.Button
                             text="Xóa"
                             color="default"

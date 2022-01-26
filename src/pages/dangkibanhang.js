@@ -19,24 +19,24 @@ const [isOpen, setIsOpen] = useState(false);
 
   const handleSubmit = (newNcc) => {
 	axios
-	.post('https://localhost:44357/api/nhacungcap' ,newNcc)
+	.post('https://localhost:44357/api/KhachHang' ,newNcc)
 	.then((res) => {
 	  alert('register success')
 	})
 	.catch((err) => console.log(err));
   } 
 	return (
-		<div className='dangkibanhang'>
+		<div className='dangkitaikhoan'>
 		<Head>
-        <title>dangkibanhang</title>
+        <title>dangkitaikhoan</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Sidebar isOpen={isOpen} toggle={toggle} />
       <Navbar toggle={toggle} />
-      <h1 style={{ 'text-align': 'center', 'padding-top': '20' }}>Đăng kí bán hàng</h1>
+      <h1 style={{ 'text-align': 'center', 'padding-top': '20' }}>Đăng kí tài khoản</h1>
 		<Form handleAddNew={handleSubmit} />
 		</div>
 	);
 }
 
-export default dangkibanhang;
+export default dangkitaikhoan;
